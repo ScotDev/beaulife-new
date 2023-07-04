@@ -26,7 +26,7 @@ export default function Settings() {
       };
 
       const data = await axios.get(
-        `http://localhost:3333/api/user/${user?.user?.uid}`,
+        `VITE_API_URL/api/user/${user?.user?.uid}`,
         // {},
         {
           headers: headers,
