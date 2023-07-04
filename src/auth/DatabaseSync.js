@@ -9,7 +9,7 @@ export const addUserToDB = async (source, userData, nickName) => {
     photoUrl: userData.photoURL,
     signUpSource: source,
   };
-  // console.log(newUser);
+  console.log(newUser);
   console.log(import.meta.env);
   try {
     // await axios.post("http://localhost:3333/api/register", newUser);

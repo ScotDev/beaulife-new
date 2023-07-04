@@ -26,7 +26,7 @@ export default function Settings() {
       };
 
       const data = await axios.get(
-        `VITE_API_URL/api/user/${user?.user?.uid}`,
+        `${import.meta.env.VITE_API_URL}/api/user/${user?.user?.uid}`,
         // {},
         {
           headers: headers,
