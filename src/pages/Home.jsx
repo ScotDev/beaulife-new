@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { signOutOfFireBaseAuth, firebaseAuth } from "../firebase";
-import axios from "axios";
+// import axios from "axios";
 import { useAuthContext } from "../auth/useAuthContext";
 // import { getLocalAuthData } from "../auth/LocalStorage";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Button from "../components/Button";
+import Card from "../components/Card";
 
 export default function Home() {
   const user = useAuthContext();
@@ -49,6 +50,7 @@ export default function Home() {
           <p>{name || "Username"}</p>
         </nav>
         <h2 className="text-3xl font-medium py-7">Welcome!</h2>
+        <Card></Card>
         <Button type="button" onClick={handleSignOut}>
           Sign out
         </Button>

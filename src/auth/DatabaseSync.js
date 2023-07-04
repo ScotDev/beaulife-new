@@ -1,5 +1,6 @@
 import axios from "axios";
 
+// Add JWT check here
 export const addUserToDB = async (source, userData, nickName) => {
   const newUser = {
     userName: nickName ? nickName : userData.displayName,
@@ -8,9 +9,11 @@ export const addUserToDB = async (source, userData, nickName) => {
     photoUrl: userData.photoURL,
     signUpSource: source,
   };
-  console.log(newUser);
+  // console.log(newUser);
+  // console.log(import.meta.env);
   try {
-    await axios.post("http://localhost:3333/api/register", newUser);
+    // await axios.post("http://localhost:3333/api/register", newUser);
+    await axios.post(`http://${import.meta.env.API_URL}/api/register`, newUser);
   } catch (error) {
     console.log(error);
   }
