@@ -1,8 +1,14 @@
 // export default function Card() {
-import { BsCloudSunFill } from "react-icons/bs";
+import {
+  BsCloudSunFill,
+  BsArrowUpShort,
+  BsArrowDownShort,
+  BsArrowRightShort,
+  BsWater,
+} from "react-icons/bs";
 const PrimaryCard = ({ location, temp }) => {
   return (
-    <div className=" py-4 px-8 rounded-xl l w-fit backdrop-blur-2xl">
+    <div className=" py-4 px-8 rounded-xl l w-fit text-gray-800">
       <div>
         <h2 className="font-bold text-4xl">{location}</h2>
         <h3 className="text-sm py-2">Updated 5 minutes ago</h3>
@@ -18,6 +24,27 @@ const PrimaryCard = ({ location, temp }) => {
         </div>
       </div>
       <h3 className="text-2xl pt-4">Mostly sunny</h3>
+      <div className="flex flex-row justify-evenly items-center py-4">
+        <div className="flex flex-row items-center">
+          <BsArrowUpShort className="w-8 h-8" />
+          <p>21C</p>
+        </div>
+        <div className="flex flex-row items-center">
+          <BsArrowDownShort className="w-8 h-8" />
+          <p>12C</p>
+        </div>
+      </div>
+
+      <div className="flex flex-row justify-evenly items-center py-4">
+        <div className="flex flex-row items-center">
+          <BsWater className="w-6 h-6 mr-2" />
+          <p>54%</p>
+        </div>
+        <div className="flex flex-row items-center">
+          <BsArrowRightShort className="w-8 h-8" />
+          <p>24 mph</p>
+        </div>
+      </div>
     </div>
   );
 };

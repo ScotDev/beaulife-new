@@ -18,15 +18,15 @@
     @apply flex flex-col pt-12 w-full;
   }
   .background {
-    @apply min-w-full min-h-screen absolute bg-slate-50 -z-10;
+    @apply min-w-full min-h-screen absolute bg-slate-50 -z-10 overflow-x-hidden;
   }
   .background-color {
-    @apply absolute top-20 left-20 w-72 h-72 bg-gradient-to-r from-blue-700 to-violet-400 rounded-full mix-blend-multiply filter blur-3xl opacity-70;
+    @apply absolute top-20 left-80 w-72 h-72 bg-gradient-to-r from-blue-700 to-violet-400 rounded-full mix-blend-multiply filter blur-3xl opacity-70;
   }
   .btn-primary {
     @apply rounded-md min-w-fit w-full h-[48px] px-4 font-medium text-lg text-white bg-purple-600;
   }
   .btn-secondary {
-    @apply border  border-black rounded-md min-w-fit w-full h-[48px] px-4 font-medium text-lg;
+    @apply border border-gray-900 rounded-md min-w-fit w-full h-[48px] px-4 font-medium text-lg;
   }
 }
