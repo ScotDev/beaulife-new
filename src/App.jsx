@@ -68,7 +68,9 @@ const router = createBrowserRouter(
         path="home"
         element={
           <PrivateRoute>
+            {/* <PublicRoute> */}
             <Home />
+            {/* </PublicRoute> */}
           </PrivateRoute>
         }
       />

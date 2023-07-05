@@ -31,7 +31,7 @@ export default function Home() {
           {/* <h2 className="text-3xl font-medium py-7">Welcome!</h2> */}
           {/* <Card></Card> */}
           <PrimaryCard location="Edinburgh, UK" temp="19" />
-          <div className="flex flex-col lg:flex-row gap-4 p-4">
+          <div className="flex flex-col lg:flex-row gap-4 py-4">
             <SecondaryCard temp="22" time="6pm" />
             <SecondaryCard temp="18" time="7pm" />
             <SecondaryCard temp="17" time="8pm" />

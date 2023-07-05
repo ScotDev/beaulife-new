@@ -8,7 +8,7 @@ import {
 } from "react-icons/bs";
 const PrimaryCard = ({ location, temp }) => {
   return (
-    <div className="py-4 px-8 rounded-xl l w-fit text-gray-800">
+    <div className="py-4 px-8 rounded-xl l w-full lg:wi-fit text-gray-800">
       <div>
         <h2 className="font-bold text-4xl">{location}</h2>
         <h3 className="text-sm py-2">Updated 5 minutes ago</h3>
@@ -19,7 +19,7 @@ const PrimaryCard = ({ location, temp }) => {
           {temp}
           <span className="text-5xl">C</span>
         </h1>
-        <div className="h-16 w-16 ml-8">
+        <div className="h-20 w-20 ml-10">
           <BsCloudSunFill className="w-full h-full" />
         </div>
       </div>
@@ -55,16 +55,20 @@ const PrimaryCard = ({ location, temp }) => {
 
 const SecondaryCard = ({ time, temp }) => {
   return (
-    <div className="py-4 px-8 rounded-xl l w-fit bg-blue-50 backdrop-blur-xl text-gray-800">
-      <div className="font-bold text-4xl">
-        {temp}
-        <span className="text-2xl">C</span>
+    <div className="py-4 px-8 rounded-xl l w-full lg:w-fit bg-gray-100 backdrop-blur-xl text-gray-800">
+      <div className="flex flex-row lg:flex-col">
+        <div className="flex flex-col">
+          <div className="font-bold text-4xl">
+            {temp}
+            <span className="text-xl">C</span>
+          </div>
+          <div className="font-medium py-2">{time}</div>
+        </div>
+        <div className="h-12 w-12 mx-auto">
+          <BsCloudSunFill className="w-full h-full" />
+        </div>
       </div>
-      <div className="py-2">{time}</div>
-      <div className="h-12 w-12 mx-auto">
-        <BsCloudSunFill className="w-full h-full" />
-      </div>
-      <div className="flex flex-row justify-evenly items-center pt-6">
+      <div className="flex flex-row justify-evenly items-center lg:pt-6">
         <div className="flex flex-row items-center">
           <BsArrowUpShort className="w-8 h-8" />
           <p>
