@@ -6,7 +6,7 @@ import { useAuthContext } from "../auth/useAuthContext";
 // import { getLocalAuthData } from "../auth/LocalStorage";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Button from "../components/Button";
-import { PrimaryCard, SecondaryCard } from "../components/Card";
+import { PrimaryCard, HourlyCard, DailyCard } from "../components/Card";
 import Navbar from "../components/Navbar";
 
 export default function Home() {
@@ -19,23 +19,45 @@ export default function Home() {
         <div className="background-color"></div>
       </div>
       <div className="flex flex-col items-center h-screen">
-        {/* <main className="flex flex-col items-center w-[315px]"> */}
         <Navbar></Navbar>{" "}
         <main className="container">
-          {/* <nav className="flex items-center justify-between w-full">
-          <Link to="../settings">
-            <GiHamburgerMenu className="h-12 w-8" />
-          </Link>
-          <p>{name || "Username"}</p>
-        </nav> */}
-          {/* <h2 className="text-3xl font-medium py-7">Welcome!</h2> */}
-          {/* <Card></Card> */}
-          <PrimaryCard location="Edinburgh, UK" temp="19" />
           <div className="flex flex-col lg:flex-row gap-4 py-4">
-            <SecondaryCard temp="22" time="6pm" />
-            <SecondaryCard temp="18" time="7pm" />
-            <SecondaryCard temp="17" time="8pm" />
-            <SecondaryCard temp="15" time="9pm" />
+            <PrimaryCard location="Edinburgh, UK" temp="19" />
+            {/* <div className="flex flex-row lg:items-end gap-4 py-4">
+              <HourlyCard temp="22" time="6pm" />
+              <HourlyCard temp="18" time="7pm" />
+              <HourlyCard temp="17" time="8pm" />
+              <HourlyCard temp="15" time="9pm" />
+              <HourlyCard temp="15" time="9pm" />
+              <HourlyCard temp="15" time="9pm" />
+              <HourlyCard temp="15" time="9pm" />
+              <HourlyCard temp="15" time="9pm" />
+            </div> */}
+            <div id="scrollable" className="scroller">
+              <div className="scroll-item">
+                <HourlyCard temp="22" time="6pm" />
+              </div>
+              <div className="scroll-item">
+                <HourlyCard temp="18" time="7pm" />
+              </div>
+              <div className="scroll-item">
+                <HourlyCard temp="22" time="6pm" />
+              </div>
+              <div className="scroll-item">
+                <HourlyCard temp="18" time="7pm" />
+              </div>
+              <div className="scroll-item">
+                <HourlyCard temp="22" time="6pm" />
+              </div>
+              <div className="scroll-item">
+                <HourlyCard temp="18" time="7pm" />
+              </div>
+            </div>
+          </div>
+          <div className="grid gap-6 py-6 w-full lg:w-2/5">
+            <DailyCard />
+            <DailyCard />
+            <DailyCard />
           </div>
         </main>
       </div>
