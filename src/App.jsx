@@ -2,6 +2,7 @@ import Signup from "./pages/Signup";
 import Landing from "./pages/Landing";
 import Home from "./pages/Home";
 import Settings from "./pages/Settings";
+import Profile from "./pages/Profile";
 import Callback from "./pages/Callback";
 import { useAuthContext } from "./auth/useAuthContext";
 // import { AuthContextProvider } from './auth/AuthContext'
@@ -79,6 +80,14 @@ const router = createBrowserRouter(
           </PrivateRoute>
         }
       />
+      <Route
+        path="profile"
+        element={
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        }
+      />
     </Route>
   )
 );
@@ -131,6 +140,7 @@ function App() {
   return (
     <>
       {/* <AuthContextProvider /> */}
+
       <RouterProvider router={router} />
     </>
   );
