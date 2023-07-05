@@ -51,6 +51,7 @@ export default function Settings() {
         <div>Language</div>
         <div>Temperature units</div>
         <div>Speed units</div>
+        <div>Time format</div>
       </main>
     </div>
   );

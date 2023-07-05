@@ -6,7 +6,7 @@ import { useAuthContext } from "../auth/useAuthContext";
 // import { getLocalAuthData } from "../auth/LocalStorage";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Button from "../components/Button";
-import { PrimaryCard } from "../components/Card";
+import { PrimaryCard, SecondaryCard } from "../components/Card";
 import Navbar from "../components/Navbar";
 
 export default function Home() {
@@ -30,7 +30,13 @@ export default function Home() {
         </nav> */}
           {/* <h2 className="text-3xl font-medium py-7">Welcome!</h2> */}
           {/* <Card></Card> */}
-          <PrimaryCard location="Edinburgh" temp="19" />
+          <PrimaryCard location="Edinburgh, UK" temp="19" />
+          <div className="flex flex-col lg:flex-row gap-4 p-4">
+            <SecondaryCard temp="22" time="6pm" />
+            <SecondaryCard temp="18" time="7pm" />
+            <SecondaryCard temp="17" time="8pm" />
+            <SecondaryCard temp="15" time="9pm" />
+          </div>
         </main>
       </div>
     </>

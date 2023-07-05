@@ -1,14 +1,14 @@
-// export default function Card() {
 import {
   BsCloudSunFill,
   BsArrowUpShort,
   BsArrowDownShort,
   BsArrowRightShort,
   BsWater,
+  BsEye,
 } from "react-icons/bs";
 const PrimaryCard = ({ location, temp }) => {
   return (
-    <div className=" py-4 px-8 rounded-xl l w-fit text-gray-800">
+    <div className="py-4 px-8 rounded-xl l w-fit text-gray-800">
       <div>
         <h2 className="font-bold text-4xl">{location}</h2>
         <h3 className="text-sm py-2">Updated 5 minutes ago</h3>
@@ -37,7 +37,11 @@ const PrimaryCard = ({ location, temp }) => {
 
       <div className="flex flex-row justify-evenly items-center py-4">
         <div className="flex flex-row items-center">
-          <BsWater className="w-6 h-6 mr-2" />
+          <BsEye className="w-6 h-6 mr-2" />
+          <p>Good</p>
+        </div>
+        <div className="flex flex-row items-center">
+          <BsWater className="w-6 h-6 mx-2" />
           <p>54%</p>
         </div>
         <div className="flex flex-row items-center">
@@ -49,35 +53,34 @@ const PrimaryCard = ({ location, temp }) => {
   );
 };
 
-//   return (
-//     <>
-//       <div class="max-w-sm rounded overflow-hidden shadow-lg my-2">
-//         <img
-//           class="w-full"
-//           src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1173&q=80"
-//           alt="Sunset in the mountains"
-//         />
-//         <div class="px-6 py-4">
-//           <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
-//           <p class="text-gray-700 text-base">
-//             Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-//             Voluptatibus quia, nulla!
-//           </p>
-//         </div>
-//         <div class="px-6 pt-4 pb-2">
-//           <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-//             photography
-//           </span>
-//           <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-//             travel
-//           </span>
-//           <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-//             winter
-//           </span>
-//         </div>
-//       </div>
-//     </>
-//   );
-// }
+const SecondaryCard = ({ time, temp }) => {
+  return (
+    <div className="py-4 px-8 rounded-xl l w-fit bg-blue-50 backdrop-blur-xl text-gray-800">
+      <div className="font-bold text-4xl">
+        {temp}
+        <span className="text-2xl">C</span>
+      </div>
+      <div className="py-2">{time}</div>
+      <div className="h-12 w-12 mx-auto">
+        <BsCloudSunFill className="w-full h-full" />
+      </div>
+      <div className="flex flex-row justify-evenly items-center pt-6">
+        <div className="flex flex-row items-center">
+          <BsArrowUpShort className="w-8 h-8" />
+          <p>
+            {temp}
+            <span className="text-xs">C</span>
+          </p>
+        </div>
+        <div className="flex flex-row items-center">
+          <BsArrowDownShort className="w-8 h-8" />
+          <p>
+            12<span className="text-xs">C</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
 
-export { PrimaryCard };
+export { PrimaryCard, SecondaryCard };
