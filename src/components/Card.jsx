@@ -154,7 +154,7 @@ const DailyCard = ({ data }) => {
 const MiniCard = ({ data }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   console.log(data);
-  const dateAsDay = dayjs(data.date).format("dddd");
+  const dateAsDay = dayjs(data?.date).format("dddd");
   console.log(dateAsDay);
   const toggleState = () => {
     setIsExpanded((isExpanded) => !isExpanded);
