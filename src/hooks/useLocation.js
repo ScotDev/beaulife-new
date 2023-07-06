@@ -11,9 +11,15 @@ import { useState, useEffect } from "react";
 
 const useLocation = () => {
   const [locationData, setLocationData] = useState(null);
+  const [locationServicesDisabled, setLocationServicesDisabled] =
+    useState(false);
 
   useEffect(() => {
+    if (!navigator.geolocation) {
+      return setLocationServicesDisabled(false);
+    }
     if ("geolocation" in navigator) {
+      setLocationServicesDisabled(true);
       console.log("Available");
       navigator.geolocation.getCurrentPosition((position) => {
         // console.log("logged");
@@ -24,12 +30,12 @@ const useLocation = () => {
         });
       });
     } else {
-      console.log("Not Available");
-      setLocationData({});
+      console.log("Not available");
+      setLocationData(null);
     }
   }, []);
 
-  return [locationData];
+  return [locationData, locationServicesDisabled];
 };
 
 export default useLocation;

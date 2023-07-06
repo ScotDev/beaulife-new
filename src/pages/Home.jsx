@@ -52,13 +52,16 @@ export default function Home() {
   useEffect(() => {
     (async () => {
       // await getCurrentWeatherData(locationData);
-      setIsloading(true);
-      const dailyRes = await getDailyWeatherData(locationData);
-      setDailyData(dailyRes);
-      const hourlyRes = await getHourlyWeatherData(locationData);
-      console.log(hourlyRes);
-      setHourlyData(hourlyRes);
-
+      if (locationData) {
+        setIsloading(true);
+        const dailyRes = await getDailyWeatherData(locationData);
+        setDailyData(dailyRes);
+        const hourlyRes = await getHourlyWeatherData(locationData);
+        console.log(hourlyRes);
+        setHourlyData(hourlyRes);
+      } else {
+        console.log("Location services disabled");
+      }
       setTimeout(() => {
         setIsloading(false);
       }, 700);
@@ -72,26 +75,25 @@ export default function Home() {
       </div>
       <div className="flex flex-col items-center h-screen">
         <Navbar></Navbar>
+        {isLoading && <Loading />}
         <main className="container">
           <div className="flex flex-col lg:flex-row gap-10 py-4">
-            <PrimaryCard
-              location={dailyData?.location}
-              data={dailyData?.current}
-              minMax={dailyData?.data?.[0]}
-              isLoading={isLoading}
-            />
-            <div id="scrollable" className="scroller">
-              {hourly}
-            </div>
-          </div>
-          <div className="grid gap-6 py-6 w-full lg:w-2/5">
-            {isLoading ? (
-              <div className="text-gray-800 py-4 px-8  h-[96px] w-[506px] grid place-items-center">
-                <Loading />
-              </div>
-            ) : (
-              daily
+            {!isLoading && (
+              <PrimaryCard
+                location={dailyData?.location}
+                data={dailyData?.current}
+                minMax={dailyData?.data?.[0]}
+              />
             )}
+
+            {!isLoading && (
+              <div id="scrollable" className="scroller">
+                {hourly}
+              </div>
+            )}
+          </div>
+          <div className="grid place-items-center gap-6 py-6 w-full lg:w-2/5">
+            {!isLoading && daily}
           </div>
         </main>
       </div>

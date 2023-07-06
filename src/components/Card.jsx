@@ -12,19 +12,15 @@ import DynamicIcon from "./DynamicIcon";
 import Loading from "./Loading";
 import { gradeVisibility } from "../utils/gradeVisibility";
 
-const PrimaryCard = ({ location, data, isLoading, minMax }) => {
+const PrimaryCard = ({ location, data, minMax }) => {
   const visibility = gradeVisibility(data?.vis_miles);
-  if (isLoading) {
-    return (
-      <div className="grid place-items-center py-4 px-8 h=[416px] w-[352px]">
-        <Loading />
-      </div>
-    );
-  }
   if (!data) {
     return (
       <div className="grid place-items-center py-4 px-8 h=[416px] w-[352px]">
-        <p className="text-lg">No data found</p>
+        <p className="text-lg font-medium">No data found</p>
+        <p className="text-center pt-4">
+          (Location services may be disabled on your device)
+        </p>
       </div>
     );
   }
