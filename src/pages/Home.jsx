@@ -87,18 +87,9 @@ export default function Home() {
             <PrimaryCard
               location={dailyData?.location}
               data={dailyData?.current}
+              minMax={dailyData?.data[0]}
               isLoading={isLoading}
             />
-            {/* <div className="flex flex-row lg:items-end gap-4 py-4">
-              <HourlyCard temp="22" time="6pm" />
-              <HourlyCard temp="18" time="7pm" />
-              <HourlyCard temp="17" time="8pm" />
-              <HourlyCard temp="15" time="9pm" />
-              <HourlyCard temp="15" time="9pm" />
-              <HourlyCard temp="15" time="9pm" />
-              <HourlyCard temp="15" time="9pm" />
-              <HourlyCard temp="15" time="9pm" />
-            </div> */}
             <div id="scrollable" className="scroller">
               <div className="scroll-item">
                 <HourlyCard temp="22" time="6pm" />
@@ -128,13 +119,6 @@ export default function Home() {
             ) : (
               daily
             )}
-
-            {/* <DailyCard />
-            <DailyCard />
-            <DailyCard />
-            <DailyCard />
-            <DailyCard />
-            <DailyCard /> */}
           </div>
         </main>
       </div>

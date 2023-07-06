@@ -12,8 +12,9 @@ import DynamicIcon from "./DynamicIcon";
 import Loading from "./Loading";
 import { gradeVisibility } from "../utils/gradeVisibility";
 
-const PrimaryCard = ({ location, data, isLoading }) => {
+const PrimaryCard = ({ location, data, isLoading, minMax }) => {
   const visibility = gradeVisibility(data?.vis_miles);
+  console.log(minMax);
   if (isLoading) {
     return (
       <div className="grid place-items-center py-4 px-8 h=[416px] w-[352px]">
@@ -37,7 +38,7 @@ const PrimaryCard = ({ location, data, isLoading }) => {
       <div className="flex flex-row items-center">
         <h1 className="font-extrabold text-9xl">
           {data?.temp_c}
-          <span className="text-5xl">C</span>
+          <span className="text-5xl pl-1">C</span>
         </h1>
         <div className="h-24 w-24 ml-16">
           <DynamicIcon condition={data?.condition.text} />
@@ -48,11 +49,17 @@ const PrimaryCard = ({ location, data, isLoading }) => {
       <div className="flex flex-row justify-evenly lg:justify-start items-center py-4 gap-6">
         <div className="flex flex-row items-center font-medium">
           <BsArrowUpShort className="w-8 h-8" />
-          <p>21C</p>
+          <p className="text-xl">
+            {minMax?.maxtemp_c.toFixed(0)}
+            <span className="text-base pl-0.5">C</span>
+          </p>
         </div>
         <div className="flex flex-row items-center  font-medium">
           <BsArrowDownShort className="w-8 h-8" />
-          <p>12C</p>
+          <p className="text-xl">
+            {minMax?.mintemp_c.toFixed(0)}
+            <span className="text-base pl-0.5">C</span>
+          </p>
         </div>
       </div>
 
@@ -63,7 +70,7 @@ const PrimaryCard = ({ location, data, isLoading }) => {
         </div>
         <div className="flex flex-row items-center  font-medium">
           <BsWater className="w-6 h-6 mx-2" />
-          <p>{data?.humidity}%</p>
+          <p className=" pl-0.5">{data?.humidity}%</p>
         </div>
         <div className="flex flex-row items-center  font-medium">
           <BsWind className="w-6 h-6 mr-2" />
@@ -152,7 +159,7 @@ const DailyCard = ({ data }) => {
 
 const MiniCard = ({ data }) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  console.log(data);
+  // console.log(data);
 
   const tempDate = new Date(data.date);
   const dateAsDay = tempDate.toLocaleDateString("en-gb", { weekday: "long" });
@@ -178,11 +185,11 @@ const MiniCard = ({ data }) => {
         <div className="flex flex-row gap-4">
           <div className="text-3xl">
             {data.maxtemp_c.toFixed(0)}
-            <span className="text-base">C</span>
+            <span className="text-base  pl-0.5">C</span>
           </div>
           <div className="text-3xl text-gray-500">
             {data.mintemp_c.toFixed(0)}
-            <span className="text-base">C</span>
+            <span className="text-base  pl-0.5">C</span>
           </div>
         </div>
       </div>
