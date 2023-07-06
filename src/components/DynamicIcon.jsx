@@ -5,6 +5,8 @@ import {
   BsFillCloudsFill,
   BsFillCloudyFill,
   BsFillCloudDrizzleFill,
+  BsFillCloudRainFill,
+  BsFillCloudRainHeavyFill,
 } from "react-icons/bs";
 
 export default function DynamicIcon({ condition }) {
@@ -30,6 +32,12 @@ export default function DynamicIcon({ condition }) {
       break;
     case "Patchy rain possible":
       icon = <BsFillCloudDrizzleFill className="w-full h-full" />;
+      break;
+    case "Light rain":
+      icon = <BsFillCloudRainFill className="w-full h-full" />;
+      break;
+    case "Heavy rain":
+      icon = <BsFillCloudRainHeavyFill className="w-full h-full" />;
       break;
     default:
       icon = <BsSunFill className="w-full h-full" />;

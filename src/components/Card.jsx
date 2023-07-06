@@ -39,7 +39,7 @@ const PrimaryCard = ({ location, data, isLoading }) => {
           {data?.temp_c}
           <span className="text-5xl">C</span>
         </h1>
-        <div className="h-20 w-20 ml-10">
+        <div className="h-24 w-24 ml-16">
           <DynamicIcon condition={data?.condition.text} />
           {/* <BsCloudSunFill className="w-full h-full" /> */}
         </div>
@@ -188,7 +188,7 @@ const MiniCard = ({ data }) => {
       </div>
       {/* </div> */}
       {isExpanded && (
-        <div className="flex flex-row justify-start gap-4 lg:gap-0 lg:justify-evenly items-center pt-6 lg:pt-6">
+        <div className="flex flex-row  gap-4 lg:gap-0 justify-evenly items-center pt-6 lg:pt-6">
           {/* <div className="flex flex-row items-center">
             <BsArrowUpShort className="w-8 h-8" />
             <p>
@@ -204,15 +204,16 @@ const MiniCard = ({ data }) => {
           </div> */}
           <div className="flex flex-row items-center">
             <BsEye className="w-6 h-6 mx-2" />
-            <p>{data.avgvis_miles} mi</p>
+            <p className="font-medium">{gradeVisibility(data.avgvis_miles)}</p>
           </div>
           <div className="flex flex-row items-center">
-            <BsSun className="w-6 h-6 mx-2" />
-            <p>{data.uv}</p>
+            {/* <BsSun className="w-6 h-6 mx-2" /> */}
+            <p>UV</p>
+            <p className="pl-1 font-medium">{data.uv}</p>
           </div>
           <div className="flex flex-row items-center">
             <BsWind className="w-6 h-6 mr-2" />
-            <p>{data.maxwind_mph.toFixed(0)} mph</p>
+            <p className="font-medium">{data.maxwind_mph.toFixed(0)} mph</p>
           </div>
         </div>
       )}
