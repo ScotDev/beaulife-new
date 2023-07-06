@@ -9,7 +9,9 @@ export default function Navbar() {
     <div className="flex items-center justify-between w-full h-fit px-12 lg:pt-4 text-gray-800 backdrop-blur-4xl">
       <Link to="../home">
         <div>
-          <p className="font-semibold">Brand</p>
+          <p className="font-semibold text-lg underline underline-offset-2 decoration-purple-600">
+            Brand
+          </p>
         </div>
       </Link>
       <div className="flex flex-row items-center justify-between w-48 ">

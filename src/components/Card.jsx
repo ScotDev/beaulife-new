@@ -14,11 +14,17 @@ import { gradeVisibility } from "../utils/gradeVisibility";
 
 const PrimaryCard = ({ location, data, isLoading, minMax }) => {
   const visibility = gradeVisibility(data?.vis_miles);
-  console.log(minMax);
   if (isLoading) {
     return (
       <div className="grid place-items-center py-4 px-8 h=[416px] w-[352px]">
         <Loading />
+      </div>
+    );
+  }
+  if (!data) {
+    return (
+      <div className="grid place-items-center py-4 px-8 h=[416px] w-[352px]">
+        <p className="text-lg">No data found</p>
       </div>
     );
   }
@@ -49,16 +55,16 @@ const PrimaryCard = ({ location, data, isLoading, minMax }) => {
       <div className="flex flex-row justify-evenly lg:justify-start items-center py-4 gap-6">
         <div className="flex flex-row items-center font-medium">
           <BsArrowUpShort className="w-8 h-8" />
-          <p className="text-xl">
+          <p className="text-2xl">
             {minMax?.maxtemp_c.toFixed(0)}
-            <span className="text-base pl-0.5">C</span>
+            <span className="text-lg pl-0.5">C</span>
           </p>
         </div>
         <div className="flex flex-row items-center  font-medium">
           <BsArrowDownShort className="w-8 h-8" />
-          <p className="text-xl">
+          <p className="text-2xl">
             {minMax?.mintemp_c.toFixed(0)}
-            <span className="text-base pl-0.5">C</span>
+            <span className="text-lg pl-0.5">C</span>
           </p>
         </div>
       </div>
@@ -81,19 +87,26 @@ const PrimaryCard = ({ location, data, isLoading, minMax }) => {
   );
 };
 
-const HourlyCard = ({ time, temp }) => {
+const HourlyCard = ({ data }) => {
+  console.log(data);
+
+  const tempDate = new Date(data.time);
+  const parsedTime = tempDate.toLocaleTimeString("en-gb", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
   return (
-    <div className="py-6 px-8 rounded-xl l w-full h-full lg:w-fit glass-card text-gray-800 text-center ">
+    <div className="pb-6 pt-4 px-8 rounded-xl l w-full h-full lg:w-fit glass-card text-gray-800 text-center ">
       <div className="flex flex-col lg:items-center lg:justify-center">
         <div className="flex flex-col">
-          <div className="font-bold text-4xl">
-            {temp}
-            <span className="text-xl">C</span>
+          <div className="font-medium pb-2">{parsedTime}</div>
+          <div className="font-bold text-4xl py-2">
+            {data?.temp_c.toFixed(0)}
+            <span className="text-xl pl-0.5">C</span>
           </div>
-          <div className="font-medium py-2 ">{time}</div>
         </div>
-        <div className="h-12 w-12 mx-auto">
-          <BsCloudSunFill className="w-full h-full" />
+        <div className="h-12 w-12 mx-auto mt-2">
+          <DynamicIcon condition={data?.condition} />
         </div>
       </div>
       {/* <div className="flex flex-row justify-evenly items-center lg:pt-6">
@@ -159,14 +172,9 @@ const DailyCard = ({ data }) => {
 
 const MiniCard = ({ data }) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  // console.log(data);
 
   const tempDate = new Date(data.date);
   const dateAsDay = tempDate.toLocaleDateString("en-gb", { weekday: "long" });
-  // if (data) {
-  //   dateAsDay = "Monday";
-  //   console.log(dayjs(data.date).format("dddd"));
-  // }
 
   const toggleState = () => {
     setIsExpanded((isExpanded) => !isExpanded);

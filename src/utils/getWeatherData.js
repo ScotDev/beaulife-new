@@ -32,5 +32,25 @@ const getDailyWeatherData = async (coords) => {
   }
   return { errorMsg: "No coords provided" };
 };
+const getHourlyWeatherData = async (coords) => {
+  if (coords) {
+    try {
+      // Should include authentication check
+      const res = await axios.post(
+        `${import.meta.env.VITE_API_URL}/weather/hourly`,
+        coords
+      );
+      // Experimental
+      if (res.status !== 200) {
+        throw res.status;
+      }
+      return res.data;
+    } catch (error) {
+      console.log(error);
+      return { errorMsg: "Error fetching weather" };
+    }
+  }
+  return { errorMsg: "No coords provided" };
+};
 
-export { getCurrentWeatherData, getDailyWeatherData };
+export { getCurrentWeatherData, getDailyWeatherData, getHourlyWeatherData };

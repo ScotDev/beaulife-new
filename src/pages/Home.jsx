@@ -20,36 +20,24 @@ import useLocation from "../hooks/useLocation";
 import {
   getCurrentWeatherData,
   getDailyWeatherData,
+  getHourlyWeatherData,
 } from "../utils/getWeatherData";
-
-const dummyDailyData = [
-  {
-    day: "thursday",
-    condition: "Mostly Cloudy",
-    maxtemp_c: "18.4",
-    mintemp_c: "10.1",
-    maxwind_mph: "24.6",
-    avgvis_miles: "4.2",
-    uv: "3.3",
-  },
-  {
-    day: "friday",
-    condition: "Mostly Cloudy",
-    maxtemp_c: "18.4",
-    mintemp_c: "10.1",
-    maxwind_mph: "24.6",
-    avgvis_miles: "4.2",
-    uv: "3.3",
-  },
-];
 
 export default function Home() {
   const [dailyData, setDailyData] = useState([]);
+  const [hourlyData, setHourlyData] = useState([]);
   const [isLoading, setIsloading] = useState(false);
   const user = useAuthContext();
   // const name = user?.user?.displayName?.split(" ")[0];
   const daily = dailyData?.data?.map((item, index) => {
     return <MiniCard key={index} data={item} />;
+  });
+  const hourly = hourlyData?.data?.map((item, index) => {
+    return (
+      <div key={index} className="scroll-item">
+        <HourlyCard data={item} />
+      </div>
+    );
   });
 
   const [locationData] = useLocation();
@@ -65,9 +53,11 @@ export default function Home() {
     (async () => {
       // await getCurrentWeatherData(locationData);
       setIsloading(true);
-      const res = await getDailyWeatherData(locationData);
-      console.log(res);
-      setDailyData(res);
+      const dailyRes = await getDailyWeatherData(locationData);
+      setDailyData(dailyRes);
+      const hourlyRes = await getHourlyWeatherData(locationData);
+      console.log(hourlyRes);
+      setHourlyData(hourlyRes);
 
       setTimeout(() => {
         setIsloading(false);
@@ -91,24 +81,7 @@ export default function Home() {
               isLoading={isLoading}
             />
             <div id="scrollable" className="scroller">
-              <div className="scroll-item">
-                <HourlyCard temp="22" time="6pm" />
-              </div>
-              <div className="scroll-item">
-                <HourlyCard temp="18" time="7pm" />
-              </div>
-              <div className="scroll-item">
-                <HourlyCard temp="22" time="6pm" />
-              </div>
-              <div className="scroll-item">
-                <HourlyCard temp="18" time="7pm" />
-              </div>
-              <div className="scroll-item">
-                <HourlyCard temp="22" time="6pm" />
-              </div>
-              <div className="scroll-item">
-                <HourlyCard temp="18" time="7pm" />
-              </div>
+              {hourly}
             </div>
           </div>
           <div className="grid gap-6 py-6 w-full lg:w-2/5">
