@@ -13,7 +13,7 @@ export const addUserToDB = async (source, userData, nickName) => {
   console.log(import.meta.env);
   try {
     // await axios.post("http://localhost:3333/api/register", newUser);
-    await axios.post(`${import.meta.env.VITE_API_URL}/api/register`, newUser);
+    await axios.post(`${import.meta.env.VITE_API_URL}/auth/register`, newUser);
   } catch (error) {
     console.log(error);
   }

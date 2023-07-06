@@ -24,7 +24,7 @@ export default function Profile() {
       };
 
       const data = await axios.get(
-        `${import.meta.env.VITE_API_URL}/api/user/${user?.user?.uid}`,
+        `${import.meta.env.VITE_API_URL}/auth/user/${user?.user?.uid}`,
         // {},
         {
           headers: headers,

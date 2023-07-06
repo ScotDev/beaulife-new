@@ -13,7 +13,8 @@ import {
   MiniCard,
 } from "../components/Card";
 import Navbar from "../components/Navbar";
-import { getUserLocation } from "../utils/Location";
+import useLocation from "../hooks/useLocation";
+import useWeatherData from "../hooks/useWeatherData";
 
 const dummyDailyData = [
   {
@@ -38,25 +39,17 @@ const dummyDailyData = [
 
 export default function Home() {
   const user = useAuthContext();
-  const name = user?.user?.displayName?.split(" ")[0];
+  // const name = user?.user?.displayName?.split(" ")[0];
   const daily = dummyDailyData.map((item, index) => {
     return <MiniCard key={index} data={item} />;
   });
 
-  useEffect(() => {
-    if ("geolocation" in navigator) {
-      console.log("Available");
-      getUserLocation();
-      const logPosition = (position) => {
-        console.log(position);
-      };
-      navigator.geolocation.getCurrentPosition((position) => {
-        console.log(position);
-      });
-    } else {
-      console.log("Not Available");
-    }
-  }, []);
+  const [locationData] = useLocation();
+
+  console.log(locationData);
+
+  const [weatherData] = useWeatherData(locationData);
+  console.log(weatherData);
 
   return (
     <>
