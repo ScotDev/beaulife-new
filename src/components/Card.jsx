@@ -178,29 +178,31 @@ const MiniCard = ({ data }) => {
   };
   return (
     <div
-      className="py-4 px-8 rounded-xl l w-full glass-card text-gray-800"
+      className="py-6 px-8 rounded-xl l w-full glass-card text-gray-800 flex flex-col items-center justify-between "
       onClick={toggleState}
     >
       {/* <div className="flex flex-row items-center"> */}
-      <div className="flex flex-row items-center justify-between gap-2">
-        <div className="font-medium py-2 capitalize">{dateAsDay}</div>
+      {/* <div className="flex flex-row items-center justify-between w-full"> */}
+      <div className="grid place-items-center grid-cols-3 gap-2 w-full">
+        <div className="font-medium text-lg py-2 capitalize ">{dateAsDay}</div>
         <div className="h-8 lg:h-16 lg:w-16 mx-auto">
           <DynamicIcon condition={data?.condition} />
         </div>
         <div className="flex flex-row gap-4">
           <div className="text-3xl">
             {data.maxtemp_c.toFixed(0)}
-            <span className="text-base  pl-0.5">C</span>
+            <span className="text-base pl-0.5">C</span>
           </div>
           <div className="text-3xl text-gray-500">
             {data.mintemp_c.toFixed(0)}
-            <span className="text-base  pl-0.5">C</span>
+            <span className="text-base pl-0.5">C</span>
           </div>
         </div>
       </div>
       {/* </div> */}
       {isExpanded && (
-        <div className="flex flex-row  gap-4 lg:gap-0 justify-evenly items-center pt-6 lg:pt-6">
+        // <div className="flex flex-row gap-4 lg:gap-0 justify-evenly items-center pt-6 lg:pt-6">
+        <div className="grid place-items-center grid-cols-3 gap-2 pt-4 lg:pt-6 w-full">
           {/* <div className="flex flex-row items-center">
             <BsArrowUpShort className="w-8 h-8" />
             <p>
