@@ -3,29 +3,35 @@ import {
   BsCloudSunFill,
   BsArrowUpShort,
   BsArrowDownShort,
-  BsArrowRightShort,
+  BsWind,
   BsWater,
   BsEye,
   BsSun,
 } from "react-icons/bs";
-const PrimaryCard = ({ location, temp }) => {
+const PrimaryCard = ({ location, data }) => {
+  if (location) {
+    if (location.country === "United Kingdom") {
+      location.country = "UK";
+    }
+  }
+
   return (
     <div className="py-4 px-8 rounded-xl w-max text-gray-800">
       <div>
-        <h2 className="font-bold text-4xl">{location}</h2>
+        <h2 className="font-bold text-4xl">{`${location?.name}, ${location?.country}`}</h2>
         <h3 className="text-sm lg:text-base py-2">Updated 5 minutes ago</h3>
       </div>
 
       <div className="flex flex-row items-center">
         <h1 className="font-extrabold text-9xl">
-          {temp}
+          {data?.temp_c}
           <span className="text-5xl">C</span>
         </h1>
         <div className="h-20 w-20 ml-10">
           <BsCloudSunFill className="w-full h-full" />
         </div>
       </div>
-      <h3 className="text-2xl py-4">Mostly sunny</h3>
+      <h3 className="text-2xl py-4">{data?.condition.text}</h3>
       <div className="flex flex-row justify-evenly lg:justify-start items-center py-4 gap-6">
         <div className="flex flex-row items-center font-medium">
           <BsArrowUpShort className="w-8 h-8" />
@@ -40,15 +46,15 @@ const PrimaryCard = ({ location, temp }) => {
       <div className="flex flex-row justify-evenly lg:justify-start gap-4 items-center pt-6">
         <div className="flex flex-row items-center  font-medium">
           <BsEye className="w-6 h-6 mr-2" />
-          <p>Good</p>
+          <p>{data?.vis_miles} mi</p>
         </div>
         <div className="flex flex-row items-center  font-medium">
           <BsWater className="w-6 h-6 mx-2" />
-          <p>54%</p>
+          <p>{data?.humidity}%</p>
         </div>
         <div className="flex flex-row items-center  font-medium">
-          <BsArrowRightShort className="w-8 h-8" />
-          <p>24 mph</p>
+          <BsWind className="w-6 h-6 mr-2" />
+          <p>{data?.wind_mph} mph</p>
         </div>
       </div>
     </div>
@@ -89,7 +95,7 @@ const HourlyCard = ({ time, temp }) => {
   );
 };
 
-const DailyCard = ({}) => {
+const DailyCard = ({ data }) => {
   return (
     <div className="py-4 px-8  rounded-xl l w-full glass-card text-gray-800 ">
       <div className="flex flex-row items-center">
@@ -123,7 +129,7 @@ const DailyCard = ({}) => {
           <p>54%</p>
         </div>
         <div className="flex flex-row items-center">
-          <BsArrowRightShort className="w-8 h-8" />
+          <BsWind className="w-8 h-8" />
           <p>24 mph</p>
         </div>
       </div>
@@ -145,17 +151,17 @@ const MiniCard = ({ data }) => {
     >
       {/* <div className="flex flex-row items-center"> */}
       <div className="flex flex-row items-center justify-between gap-2">
-        <div className="font-medium py-2 capitalize">{data.day}</div>
+        <div className="font-medium py-2 capitalize">{data.date}</div>
         <div className="h-8 lg:h-16 lg:w-16 mx-auto">
           <BsCloudSunFill className="w-full h-full" />
         </div>
         <div className="flex flex-row gap-4">
           <div className="text-3xl">
-            {data.maxtemp_c}
-            <span className="text-xl">C</span>
+            {data.maxtemp_c.toFixed(0)}
+            <span className="text-base">C</span>
           </div>
           <div className="text-3xl text-gray-500">
-            {data.mintemp_c}
+            {data.mintemp_c.toFixed(0)}
             <span className="text-base">C</span>
           </div>
         </div>
@@ -178,15 +184,15 @@ const MiniCard = ({ data }) => {
           </div> */}
           <div className="flex flex-row items-center">
             <BsEye className="w-6 h-6 mx-2" />
-            <p>{data.avgvis_miles}</p>
+            <p>{data.avgvis_miles} mi</p>
           </div>
           <div className="flex flex-row items-center">
             <BsSun className="w-6 h-6 mx-2" />
             <p>{data.uv}</p>
           </div>
           <div className="flex flex-row items-center">
-            <BsArrowRightShort className="w-8 h-8" />
-            <p>{data.maxwind_mph} mph</p>
+            <BsWind className="w-6 h-6 mr-2" />
+            <p>{data.maxwind_mph.toFixed(0)} mph</p>
           </div>
         </div>
       )}

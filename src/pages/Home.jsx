@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
+import axios from "axios";
 import { signOutOfFireBaseAuth, firebaseAuth } from "../firebase";
 // import axios from "axios";
 import { useAuthContext } from "../auth/useAuthContext";
@@ -14,7 +15,11 @@ import {
 } from "../components/Card";
 import Navbar from "../components/Navbar";
 import useLocation from "../hooks/useLocation";
-import useWeatherData from "../hooks/useWeatherData";
+// import useWeatherData from "../hooks/useWeatherData";
+import {
+  getCurrentWeatherData,
+  getDailyWeatherData,
+} from "../utils/getWeatherData";
 
 const dummyDailyData = [
   {
@@ -38,9 +43,10 @@ const dummyDailyData = [
 ];
 
 export default function Home() {
+  const [dailyData, setDailyData] = useState([]);
   const user = useAuthContext();
   // const name = user?.user?.displayName?.split(" ")[0];
-  const daily = dummyDailyData.map((item, index) => {
+  const daily = dailyData?.data?.map((item, index) => {
     return <MiniCard key={index} data={item} />;
   });
 
@@ -48,14 +54,19 @@ export default function Home() {
 
   console.log(locationData);
 
-  const [weatherData] = useWeatherData(locationData);
-  const testAPI = (passedData) => {
-    console.log(passedData);
-  };
+  // const [weatherData] = useWeatherData(locationData);
+  // // // const testAPI = (passedData) => {
+  // console.log(weatherData);
+  // };
 
   useEffect(() => {
-    testAPI(weatherData);
-  }, []);
+    (async () => {
+      // await getCurrentWeatherData(locationData);
+      const res = await getDailyWeatherData(locationData);
+      console.log(res);
+      setDailyData(res);
+    })();
+  }, [locationData]);
 
   return (
     <>
@@ -63,10 +74,13 @@ export default function Home() {
         <div className="background-color"></div>
       </div>
       <div className="flex flex-col items-center h-screen">
-        <Navbar></Navbar>{" "}
+        <Navbar></Navbar>
         <main className="container">
           <div className="flex flex-col lg:flex-row gap-10 py-4">
-            <PrimaryCard location="Edinburgh, UK" temp="19" />
+            <PrimaryCard
+              location={dailyData?.location}
+              data={dailyData?.current}
+            />
             {/* <div className="flex flex-row lg:items-end gap-4 py-4">
               <HourlyCard temp="22" time="6pm" />
               <HourlyCard temp="18" time="7pm" />
