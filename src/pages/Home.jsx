@@ -50,7 +50,9 @@ export default function Home() {
       const logPosition = (position) => {
         console.log(position);
       };
-      navigator.geolocation.getCurrentPosition(logPosition);
+      navigator.geolocation.getCurrentPosition((position) => {
+        console.log(position);
+      });
     } else {
       console.log("Not Available");
     }
