@@ -14,6 +14,7 @@ import {
   MiniCard,
 } from "../components/Card";
 import Navbar from "../components/Navbar";
+import Loading from "../components/Loading";
 import useLocation from "../hooks/useLocation";
 // import useWeatherData from "../hooks/useWeatherData";
 import {
@@ -44,6 +45,7 @@ const dummyDailyData = [
 
 export default function Home() {
   const [dailyData, setDailyData] = useState([]);
+  const [isLoading, setIsloading] = useState(false);
   const user = useAuthContext();
   // const name = user?.user?.displayName?.split(" ")[0];
   const daily = dailyData?.data?.map((item, index) => {
@@ -62,9 +64,11 @@ export default function Home() {
   useEffect(() => {
     (async () => {
       // await getCurrentWeatherData(locationData);
+      setIsloading(true);
       const res = await getDailyWeatherData(locationData);
       console.log(res);
       setDailyData(res);
+      setIsloading(false);
     })();
   }, [locationData]);
 
@@ -80,7 +84,9 @@ export default function Home() {
             <PrimaryCard
               location={dailyData?.location}
               data={dailyData?.current}
+              isLoading={isLoading}
             />
+
             {/* <div className="flex flex-row lg:items-end gap-4 py-4">
               <HourlyCard temp="22" time="6pm" />
               <HourlyCard temp="18" time="7pm" />

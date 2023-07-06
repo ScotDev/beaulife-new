@@ -8,7 +8,12 @@ import {
   BsEye,
   BsSun,
 } from "react-icons/bs";
-const PrimaryCard = ({ location, data }) => {
+import DynamicIcon from "./DynamicIcon";
+import Loading from "./Loading";
+const PrimaryCard = ({ location, data, isLoading }) => {
+  if (isLoading) {
+    return <Loading />;
+  }
   if (location) {
     if (location.country === "United Kingdom") {
       location.country = "UK";
@@ -28,7 +33,8 @@ const PrimaryCard = ({ location, data }) => {
           <span className="text-5xl">C</span>
         </h1>
         <div className="h-20 w-20 ml-10">
-          <BsCloudSunFill className="w-full h-full" />
+          <DynamicIcon condition={data?.condition.text} />
+          {/* <BsCloudSunFill className="w-full h-full" /> */}
         </div>
       </div>
       <h3 className="text-2xl py-4">{data?.condition.text}</h3>
