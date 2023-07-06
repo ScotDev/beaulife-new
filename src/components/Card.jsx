@@ -23,7 +23,7 @@ const PrimaryCard = ({ location, temp }) => {
           <BsCloudSunFill className="w-full h-full" />
         </div>
       </div>
-      <h3 className="text-2xl pt-4">Mostly sunny</h3>
+      <h3 className="text-2xl py-4">Mostly sunny</h3>
       <div className="flex flex-row justify-evenly lg:justify-start items-center py-4 gap-6">
         <div className="flex flex-row items-center">
           <BsArrowUpShort className="w-8 h-8" />
@@ -35,7 +35,7 @@ const PrimaryCard = ({ location, temp }) => {
         </div>
       </div>
 
-      <div className="flex flex-row justify-evenly lg:justify-start gap-4 items-center py-4">
+      <div className="flex flex-row justify-evenly lg:justify-start gap-4 items-center pt-6">
         <div className="flex flex-row items-center">
           <BsEye className="w-6 h-6 mr-2" />
           <p>Good</p>
@@ -55,7 +55,7 @@ const PrimaryCard = ({ location, temp }) => {
 
 const HourlyCard = ({ time, temp }) => {
   return (
-    <div className="py-6 px-8 rounded-xl l w-full h-full lg:w-fit bg-gray-100 drop-shadow backdrop-blur-2xl text-gray-800 text-center">
+    <div className="py-6 px-8 rounded-xl l w-full h-full lg:w-fit glass-card text-gray-800 text-center ">
       <div className="flex flex-col lg:items-center lg:justify-center">
         <div className="flex flex-col">
           <div className="font-bold text-4xl">
@@ -89,20 +89,20 @@ const HourlyCard = ({ time, temp }) => {
 
 const DailyCard = ({}) => {
   return (
-    <div className="py-4 px-8  rounded-xl l w-full  bg-gray-100 drop-shadow backdrop-blur-xl text-gray-800">
+    <div className="py-4 px-8  rounded-xl l w-full glass-card-again text-gray-800 ">
       <div className="flex flex-row items-center">
         <div className="flex flex-col">
-          <div className="font-bold text-4xl">
+          <div className="font-bold text-4xl opacity-100">
             26
             <span className="text-xl">C</span>
           </div>
           <div className="font-medium py-2">Thursday</div>
         </div>
-        <div className="h-12 w-12 lg:h-16 lg:w-16 mx-auto">
+        <div className="h-14 w-14 lg:h-16 lg:w-16 mx-auto">
           <BsCloudSunFill className="w-full h-full" />
         </div>
       </div>
-      <div className="flex flex-row justify-start gap-6 lg:gap-0 lg:justify-evenly items-center lg:pt-6">
+      <div className="flex flex-row justify-start gap-4 lg:gap-0 lg:justify-evenly items-center pt-2 lg:pt-6">
         <div className="flex flex-row items-center">
           <BsArrowUpShort className="w-8 h-8" />
           <p>

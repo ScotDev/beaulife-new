@@ -21,7 +21,7 @@ export default function Home() {
       <div className="flex flex-col items-center h-screen">
         <Navbar></Navbar>{" "}
         <main className="container">
-          <div className="flex flex-col lg:flex-row gap-4 py-4">
+          <div className="flex flex-col lg:flex-row gap-10 py-4">
             <PrimaryCard location="Edinburgh, UK" temp="19" />
             {/* <div className="flex flex-row lg:items-end gap-4 py-4">
               <HourlyCard temp="22" time="6pm" />
@@ -55,6 +55,9 @@ export default function Home() {
             </div>
           </div>
           <div className="grid gap-6 py-6 w-full lg:w-2/5">
+            <DailyCard />
+            <DailyCard />
+            <DailyCard />
             <DailyCard />
             <DailyCard />
             <DailyCard />
