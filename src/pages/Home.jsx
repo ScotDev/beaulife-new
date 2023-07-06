@@ -49,7 +49,13 @@ export default function Home() {
   console.log(locationData);
 
   const [weatherData] = useWeatherData(locationData);
-  console.log(weatherData);
+  const testAPI = (passedData) => {
+    console.log(passedData);
+  };
+
+  useEffect(() => {
+    testAPI(weatherData);
+  }, []);
 
   return (
     <>
