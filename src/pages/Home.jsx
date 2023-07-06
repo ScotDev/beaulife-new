@@ -87,7 +87,7 @@ export default function Home() {
             <PrimaryCard
               location={dailyData?.location}
               data={dailyData?.current}
-              minMax={dailyData?.data[0]}
+              minMax={dailyData?.data?.[0]}
               isLoading={isLoading}
             />
             <div id="scrollable" className="scroller">
