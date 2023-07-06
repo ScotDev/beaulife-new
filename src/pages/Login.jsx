@@ -59,7 +59,7 @@ export default function Login() {
       <main className="flex flex-col items-center pt-8 h-screen">
         <h1 className="text-2xl font-bold font-display">beaulife.</h1>
         <h2 className="text-3xl font-medium pt-7">Welcome back!</h2>
-        <h3 className="text-lg font-medium pt-2 ">Let's log in</h3>
+        <h3 className="text-lg font-medium pt-4 ">Let's log in</h3>
 
         <div className="rounded-t-[32px] bg-gray-200 h-full w-screen pt-12 mt-14 flex flex-col items-center">
           <div className="flex flex-col items-center w-[315px]">

@@ -9,8 +9,8 @@ export default function Navbar() {
     <div className="flex items-center justify-between w-full h-fit px-12 lg:pt-4 text-gray-800 backdrop-blur-4xl">
       <Link to="../home">
         <div>
-          <p className="font-semibold text-lg underline underline-offset-2 decoration-purple-600">
-            Brand
+          <p className="font-bold text-lg underline underline-offset-2 decoration-purple-600 font-display">
+            beaulife
           </p>
         </div>
       </Link>

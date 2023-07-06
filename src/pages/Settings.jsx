@@ -48,10 +48,13 @@ export default function Settings() {
       </nav>
 
       <main className="container">
-        <div>Language</div>
-        <div>Temperature units</div>
-        <div>Speed units</div>
-        <div>Time format</div>
+        <div className="flex flex-col gap-6">
+          <div>Language</div>
+          <div>Temperature units</div>
+          <div>Speed units</div>
+          <div>Time format</div>
+          <div>Unit precision</div>
+        </div>
       </main>
     </div>
   );
