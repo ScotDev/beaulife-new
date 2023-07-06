@@ -154,11 +154,11 @@ const DailyCard = ({ data }) => {
 const MiniCard = ({ data }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   console.log(data);
-  let dateAsDay;
-  if (data) {
-    dateAsDay = "Monday";
-    // dayjs(data.date).format("dddd");
-  }
+  // let dateAsDay;
+  // if (data) {
+  //   dateAsDay = "Monday";
+  //   console.log(dayjs(data.date).format("dddd"));
+  // }
 
   const toggleState = () => {
     setIsExpanded((isExpanded) => !isExpanded);
@@ -170,7 +170,9 @@ const MiniCard = ({ data }) => {
     >
       {/* <div className="flex flex-row items-center"> */}
       <div className="flex flex-row items-center justify-between gap-2">
-        <div className="font-medium py-2 capitalize">{dateAsDay}</div>
+        <div className="font-medium py-2 capitalize">
+          {dayjs(data.date).format("dddd")}
+        </div>
         <div className="h-8 lg:h-16 lg:w-16 mx-auto">
           <BsCloudSunFill className="w-full h-full" />
         </div>
