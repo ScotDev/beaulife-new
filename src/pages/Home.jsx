@@ -89,12 +89,6 @@ export default function Home() {
               data={dailyData?.current}
               isLoading={isLoading}
             />
-            {/* <PrimaryCard
-              location={dailyData?.location}
-              data={dailyData?.current}
-              isLoading={true}
-            /> */}
-
             {/* <div className="flex flex-row lg:items-end gap-4 py-4">
               <HourlyCard temp="22" time="6pm" />
               <HourlyCard temp="18" time="7pm" />
