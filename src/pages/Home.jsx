@@ -68,7 +68,10 @@ export default function Home() {
       const res = await getDailyWeatherData(locationData);
       console.log(res);
       setDailyData(res);
-      setIsloading(false);
+
+      setTimeout(() => {
+        setIsloading(false);
+      }, 700);
     })();
   }, [locationData]);
 
@@ -86,6 +89,11 @@ export default function Home() {
               data={dailyData?.current}
               isLoading={isLoading}
             />
+            {/* <PrimaryCard
+              location={dailyData?.location}
+              data={dailyData?.current}
+              isLoading={true}
+            /> */}
 
             {/* <div className="flex flex-row lg:items-end gap-4 py-4">
               <HourlyCard temp="22" time="6pm" />
@@ -119,7 +127,14 @@ export default function Home() {
             </div>
           </div>
           <div className="grid gap-6 py-6 w-full lg:w-2/5">
-            {daily}
+            {isLoading ? (
+              <div className="text-gray-800 py-4 px-8  h-[96px] w-[506px] grid place-items-center">
+                <Loading />
+              </div>
+            ) : (
+              daily
+            )}
+
             {/* <DailyCard />
             <DailyCard />
             <DailyCard />

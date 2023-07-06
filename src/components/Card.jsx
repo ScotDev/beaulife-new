@@ -8,11 +8,19 @@ import {
   BsEye,
   BsSun,
 } from "react-icons/bs";
+import * as dayjs from "dayjs";
 import DynamicIcon from "./DynamicIcon";
 import Loading from "./Loading";
+import { gradeVisibility } from "../utils/gradeVisibility";
+
 const PrimaryCard = ({ location, data, isLoading }) => {
+  const visibility = gradeVisibility(data.vis_miles);
   if (isLoading) {
-    return <Loading />;
+    return (
+      <div className="grid place-items-center py-4 px-8 h=[416px] w-[352px]">
+        <Loading />
+      </div>
+    );
   }
   if (location) {
     if (location.country === "United Kingdom") {
@@ -52,7 +60,7 @@ const PrimaryCard = ({ location, data, isLoading }) => {
       <div className="flex flex-row justify-evenly lg:justify-start gap-4 items-center pt-6">
         <div className="flex flex-row items-center  font-medium">
           <BsEye className="w-6 h-6 mr-2" />
-          <p>{data?.vis_miles} mi</p>
+          <p className="capitalize">{visibility}</p>
         </div>
         <div className="flex flex-row items-center  font-medium">
           <BsWater className="w-6 h-6 mx-2" />
@@ -145,8 +153,9 @@ const DailyCard = ({ data }) => {
 
 const MiniCard = ({ data }) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  // console.log(data);
-
+  console.log(data);
+  const dateAsDay = dayjs(data.date).format("dddd");
+  console.log(dateAsDay);
   const toggleState = () => {
     setIsExpanded((isExpanded) => !isExpanded);
   };
@@ -157,7 +166,7 @@ const MiniCard = ({ data }) => {
     >
       {/* <div className="flex flex-row items-center"> */}
       <div className="flex flex-row items-center justify-between gap-2">
-        <div className="font-medium py-2 capitalize">{data.date}</div>
+        <div className="font-medium py-2 capitalize">{dateAsDay}</div>
         <div className="h-8 lg:h-16 lg:w-16 mx-auto">
           <BsCloudSunFill className="w-full h-full" />
         </div>
