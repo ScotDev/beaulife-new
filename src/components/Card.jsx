@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   BsCloudSunFill,
   BsArrowUpShort,
@@ -5,13 +6,14 @@ import {
   BsArrowRightShort,
   BsWater,
   BsEye,
+  BsSun,
 } from "react-icons/bs";
 const PrimaryCard = ({ location, temp }) => {
   return (
     <div className="py-4 px-8 rounded-xl w-max text-gray-800">
       <div>
         <h2 className="font-bold text-4xl">{location}</h2>
-        <h3 className="text-sm py-2">Updated 5 minutes ago</h3>
+        <h3 className="text-sm lg:text-base py-2">Updated 5 minutes ago</h3>
       </div>
 
       <div className="flex flex-row items-center">
@@ -25,26 +27,26 @@ const PrimaryCard = ({ location, temp }) => {
       </div>
       <h3 className="text-2xl py-4">Mostly sunny</h3>
       <div className="flex flex-row justify-evenly lg:justify-start items-center py-4 gap-6">
-        <div className="flex flex-row items-center">
+        <div className="flex flex-row items-center font-medium">
           <BsArrowUpShort className="w-8 h-8" />
           <p>21C</p>
         </div>
-        <div className="flex flex-row items-center">
+        <div className="flex flex-row items-center  font-medium">
           <BsArrowDownShort className="w-8 h-8" />
           <p>12C</p>
         </div>
       </div>
 
       <div className="flex flex-row justify-evenly lg:justify-start gap-4 items-center pt-6">
-        <div className="flex flex-row items-center">
+        <div className="flex flex-row items-center  font-medium">
           <BsEye className="w-6 h-6 mr-2" />
           <p>Good</p>
         </div>
-        <div className="flex flex-row items-center">
+        <div className="flex flex-row items-center  font-medium">
           <BsWater className="w-6 h-6 mx-2" />
           <p>54%</p>
         </div>
-        <div className="flex flex-row items-center">
+        <div className="flex flex-row items-center  font-medium">
           <BsArrowRightShort className="w-8 h-8" />
           <p>24 mph</p>
         </div>
@@ -89,7 +91,7 @@ const HourlyCard = ({ time, temp }) => {
 
 const DailyCard = ({}) => {
   return (
-    <div className="py-4 px-8  rounded-xl l w-full glass-card-again text-gray-800 ">
+    <div className="py-4 px-8  rounded-xl l w-full glass-card text-gray-800 ">
       <div className="flex flex-row items-center">
         <div className="flex flex-col">
           <div className="font-bold text-4xl opacity-100">
@@ -129,4 +131,67 @@ const DailyCard = ({}) => {
   );
 };
 
-export { PrimaryCard, HourlyCard, DailyCard };
+const MiniCard = ({ data }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  // console.log(data);
+
+  const toggleState = () => {
+    setIsExpanded((isExpanded) => !isExpanded);
+  };
+  return (
+    <div
+      className="py-4 px-8 rounded-xl l w-full glass-card text-gray-800"
+      onClick={toggleState}
+    >
+      {/* <div className="flex flex-row items-center"> */}
+      <div className="flex flex-row items-center justify-between gap-2">
+        <div className="font-medium py-2 capitalize">{data.day}</div>
+        <div className="h-8 lg:h-16 lg:w-16 mx-auto">
+          <BsCloudSunFill className="w-full h-full" />
+        </div>
+        <div className="flex flex-row gap-4">
+          <div className="text-3xl">
+            {data.maxtemp_c}
+            <span className="text-xl">C</span>
+          </div>
+          <div className="text-3xl text-gray-500">
+            {data.mintemp_c}
+            <span className="text-base">C</span>
+          </div>
+        </div>
+      </div>
+      {/* </div> */}
+      {isExpanded && (
+        <div className="flex flex-row justify-start gap-4 lg:gap-0 lg:justify-evenly items-center pt-6 lg:pt-6">
+          {/* <div className="flex flex-row items-center">
+            <BsArrowUpShort className="w-8 h-8" />
+            <p>
+              27
+              <span className="text-xs">C</span>
+            </p>
+          </div>
+          <div className="flex flex-row items-center">
+            <BsArrowDownShort className="w-8 h-8" />
+            <p>
+              12<span className="text-xs">C</span>
+            </p>
+          </div> */}
+          <div className="flex flex-row items-center">
+            <BsEye className="w-6 h-6 mx-2" />
+            <p>{data.avgvis_miles}</p>
+          </div>
+          <div className="flex flex-row items-center">
+            <BsSun className="w-6 h-6 mx-2" />
+            <p>{data.uv}</p>
+          </div>
+          <div className="flex flex-row items-center">
+            <BsArrowRightShort className="w-8 h-8" />
+            <p>{data.maxwind_mph} mph</p>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export { PrimaryCard, HourlyCard, DailyCard, MiniCard };

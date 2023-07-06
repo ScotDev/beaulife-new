@@ -26,7 +26,7 @@ body {
     @apply min-w-full min-h-screen absolute bg-gray-100 -z-10 overflow-x-hidden;
   }
   .background-color {
-    @apply absolute top-20 left-60 w-72 h-72 bg-gradient-to-r from-blue-700 to-violet-400 rounded-full mix-blend-multiply filter blur-3xl opacity-70;
+    @apply absolute top-20 left-[28vw] w-96 h-96 bg-gradient-to-r from-blue-700 to-violet-400 rounded-full mix-blend-multiply filter blur-3xl opacity-70;
   }
   .btn-primary {
     @apply rounded-md min-w-fit w-full h-[48px] px-4 font-medium text-lg text-white bg-purple-600;
@@ -40,11 +40,11 @@ body {
   .scroll-item {
     @apply h-fit;
   }
-  .glass-card {
+  /* .glass-card-old {
     @apply drop-shadow backdrop-blur-3xl backdrop-opacity-5 backdrop-invert bg-white/20;
-  }
-  .glass-card-again {
-    @apply bg-gray-500 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10;
+  } */
+  .glass-card {
+    @apply drop-shadow bg-white rounded-md bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-25;
   }
   /* .scroll-item:first-of-type {
     @apply pl-2;

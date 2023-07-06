@@ -6,7 +6,7 @@ import { BsSearch, BsGear } from "react-icons/bs";
 export default function Navbar() {
   const user = useAuthContext();
   return (
-    <div className="flex items-center justify-between w-full h-fit px-12 text-gray-800 backdrop-blur-4xl">
+    <div className="flex items-center justify-between w-full h-fit px-12 lg:pt-4 text-gray-800 backdrop-blur-4xl">
       <Link to="../home">
         <div>
           <p className="font-semibold">Brand</p>
