@@ -156,7 +156,8 @@ const MiniCard = ({ data }) => {
   console.log(data);
   let dateAsDay;
   if (data) {
-    dateAsDay = dayjs(data.date).format("dddd");
+    dateAsDay = "Monday";
+    // dayjs(data.date).format("dddd");
   }
 
   const toggleState = () => {
