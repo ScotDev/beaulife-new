@@ -46,7 +46,7 @@ export default function Home() {
   useEffect(() => {
     if ("geolocation" in navigator) {
       console.log("Available");
-      // getUserLocation();
+      getUserLocation();
       const logPosition = (position) => {
         console.log(position);
       };
