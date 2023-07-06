@@ -14,7 +14,7 @@ import Loading from "./Loading";
 import { gradeVisibility } from "../utils/gradeVisibility";
 
 const PrimaryCard = ({ location, data, isLoading }) => {
-  const visibility = gradeVisibility(data.vis_miles);
+  const visibility = gradeVisibility(data?.vis_miles);
   if (isLoading) {
     return (
       <div className="grid place-items-center py-4 px-8 h=[416px] w-[352px]">
