@@ -36,6 +36,7 @@ export default function DynamicIcon({ condition }) {
     case "Light rain":
       icon = <BsFillCloudRainFill className="w-full h-full" />;
       break;
+    case "Moderate rain":
     case "Heavy rain":
       icon = <BsFillCloudRainHeavyFill className="w-full h-full" />;
       break;

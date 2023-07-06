@@ -14,6 +14,8 @@ import { gradeVisibility } from "../utils/gradeVisibility";
 
 const PrimaryCard = ({ location, data, minMax }) => {
   const visibility = gradeVisibility(data?.vis_miles);
+  const rtf = new Intl.RelativeTimeFormat("en", { style: "long" });
+  const updatedAt = rtf.format(-2, "minute");
   if (!data) {
     return (
       <div className="grid place-items-center py-4 px-8 h=[416px] w-[352px]">
@@ -34,7 +36,7 @@ const PrimaryCard = ({ location, data, minMax }) => {
     <div className="py-4 px-8 rounded-xl w-max text-gray-800">
       <div>
         <h2 className="font-bold text-4xl">{`${location?.name}, ${location?.country}`}</h2>
-        <h3 className="text-sm lg:text-base py-2">Updated 5 minutes ago</h3>
+        <h3 className="text-sm lg:text-base py-2">{`Updated ${updatedAt}`}</h3>
       </div>
 
       <div className="flex flex-row items-center">
@@ -42,9 +44,8 @@ const PrimaryCard = ({ location, data, minMax }) => {
           {data?.temp_c}
           <span className="text-5xl pl-1">C</span>
         </h1>
-        <div className="h-24 w-24 ml-16">
+        <div className="h-24 w-24 ml-12 lg:ml-16">
           <DynamicIcon condition={data?.condition.text} />
-          {/* <BsCloudSunFill className="w-full h-full" /> */}
         </div>
       </div>
       <h3 className="text-2xl py-4">{data?.condition.text}</h3>
@@ -76,7 +77,7 @@ const PrimaryCard = ({ location, data, minMax }) => {
         </div>
         <div className="flex flex-row items-center  font-medium">
           <BsWind className="w-6 h-6 mr-2" />
-          <p>{data?.wind_mph} mph</p>
+          <p>{data?.wind_mph.toFixed(0)} mph</p>
         </div>
       </div>
     </div>
@@ -84,7 +85,7 @@ const PrimaryCard = ({ location, data, minMax }) => {
 };
 
 const HourlyCard = ({ data }) => {
-  console.log(data);
+  // console.log(data);
 
   const tempDate = new Date(data.time);
   const parsedTime = tempDate.toLocaleTimeString("en-gb", {
@@ -136,7 +137,7 @@ const DailyCard = ({ data }) => {
           <div className="font-medium py-2">Thursday</div>
         </div>
         <div className="h-14 w-14 lg:h-16 lg:w-16 mx-auto">
-          <BsCloudSunFill className="w-full h-full" />
+          <DynamicIcon condition={data?.condition.text} />
         </div>
       </div>
       <div className="flex flex-row justify-start gap-4 lg:gap-0 lg:justify-evenly items-center pt-2 lg:pt-6">
@@ -168,7 +169,7 @@ const DailyCard = ({ data }) => {
 
 const MiniCard = ({ data }) => {
   const [isExpanded, setIsExpanded] = useState(false);
-
+  // console.log(data);
   const tempDate = new Date(data.date);
   const dateAsDay = tempDate.toLocaleDateString("en-gb", { weekday: "long" });
 
@@ -184,7 +185,7 @@ const MiniCard = ({ data }) => {
       <div className="flex flex-row items-center justify-between gap-2">
         <div className="font-medium py-2 capitalize">{dateAsDay}</div>
         <div className="h-8 lg:h-16 lg:w-16 mx-auto">
-          <BsCloudSunFill className="w-full h-full" />
+          <DynamicIcon condition={data?.condition} />
         </div>
         <div className="flex flex-row gap-4">
           <div className="text-3xl">
