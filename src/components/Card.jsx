@@ -154,7 +154,9 @@ const DailyCard = ({ data }) => {
 const MiniCard = ({ data }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   console.log(data);
-  // let dateAsDay;
+
+  const tempDate = new Date(data.date);
+  const dateAsDay = tempDate.toLocaleDateString("en-gb", { weekday: "long" });
   // if (data) {
   //   dateAsDay = "Monday";
   //   console.log(dayjs(data.date).format("dddd"));
@@ -170,9 +172,7 @@ const MiniCard = ({ data }) => {
     >
       {/* <div className="flex flex-row items-center"> */}
       <div className="flex flex-row items-center justify-between gap-2">
-        <div className="font-medium py-2 capitalize">
-          {dayjs(data.date).format("dddd")}
-        </div>
+        <div className="font-medium py-2 capitalize">{dateAsDay}</div>
         <div className="h-8 lg:h-16 lg:w-16 mx-auto">
           <BsCloudSunFill className="w-full h-full" />
         </div>
