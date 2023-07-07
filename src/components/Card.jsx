@@ -43,7 +43,7 @@ const PrimaryCard = ({ updatedTime, location, data, minMax }) => {
     const updateInterval = setInterval(() => {
       if (updatedTime) {
         console.log("interval");
-        relativeTimeRef.current = calculateRelativeTime(updatedTime);
+        // relativeTimeRef.current = calculateRelativeTime(updatedTime);
         const res = calculateRelativeTime(updatedTime);
         // console.log(res);
         setRelativeUpdateTime(res);
@@ -51,7 +51,7 @@ const PrimaryCard = ({ updatedTime, location, data, minMax }) => {
       // console.log(relativeTimeRef.current);
       console.log(relativeUpdateTime);
       // console.log(relativeTimeVar);
-    }, 6000);
+    }, 60000);
     return () => {
       clearInterval(updateInterval);
     };
@@ -77,7 +77,7 @@ const PrimaryCard = ({ updatedTime, location, data, minMax }) => {
     <div className="py-4 px-8 rounded-xl w-max text-gray-800">
       <div>
         <h2 className="font-bold text-4xl">{`${location?.name}, ${location?.country}`}</h2>
-        <h3 className="text-sm lg:text-base py-2">{relativeTimeRef.current}</h3>
+        {/* <h3 className="text-sm lg:text-base py-2">{relativeTimeRef.current}</h3> */}
         <h3 className="text-sm lg:text-base py-2">{relativeUpdateTime}</h3>
       </div>
 

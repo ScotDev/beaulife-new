@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { signOutOfFireBaseAuth, firebaseAuth } from "../firebase";
@@ -49,16 +49,32 @@ export default function Home() {
   // console.log(weatherData);
   // };
 
+  // Give me an example of how to use the useMemo or useCallback hook to cache data from an API call.
+
+  const cachedDailyData = async () => {
+    const data = await getDailyWeatherData(locationData);
+    setDailyData(data);
+  };
+  const memoizedDailyData = useMemo(() => cachedDailyData, []);
+  useEffect(() => {
+    memoizedDailyData();
+  }, [memoizedDailyData]);
+
+  const cachedHourlyData = async () => {
+    const data = await getHourlyWeatherData(locationData);
+    setHourlyData(data);
+  };
+  const memoizedHourlyData = useMemo(() => cachedHourlyData, []);
+  useEffect(() => {
+    memoizedHourlyData();
+  }, [memoizedHourlyData]);
+
   useEffect(() => {
     (async () => {
-      // await getCurrentWeatherData(locationData);
       if (locationData) {
         setIsloading(true);
-        const dailyRes = await getDailyWeatherData(locationData);
-        setDailyData(dailyRes);
-        const hourlyRes = await getHourlyWeatherData(locationData);
-        console.log(dailyRes);
-        setHourlyData(hourlyRes);
+        cachedDailyData();
+        cachedHourlyData();
       } else {
         console.log("Location services disabled");
       }
