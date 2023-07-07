@@ -41,13 +41,13 @@ const PrimaryCard = ({ updatedTime, location, data, minMax }) => {
   // }
   useEffect(() => {
     const updateInterval = setInterval(() => {
-      // if (updatedTime) {
-      console.log("interval");
-      relativeTimeRef.current = calculateRelativeTime(updatedTime);
-      const res = calculateRelativeTime(updatedTime);
-      // console.log(res);
-      setRelativeUpdateTime(res);
-      // }
+      if (updatedTime) {
+        console.log("interval");
+        relativeTimeRef.current = calculateRelativeTime(updatedTime);
+        const res = calculateRelativeTime(updatedTime);
+        // console.log(res);
+        setRelativeUpdateTime(res);
+      }
       // console.log(relativeTimeRef.current);
       console.log(relativeUpdateTime);
       // console.log(relativeTimeVar);
