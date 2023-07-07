@@ -26,7 +26,7 @@ const calculateRelativeTime = (relativeTimestamp) => {
 };
 
 const PrimaryCard = ({ updatedTime, location, data, minMax }) => {
-  const [relativeUpdateTimne, setRelativeUpdateTimne] =
+  const [relativeUpdateTime, setRelativeUpdateTine] =
     useState("Updated just now");
   // console.log("updated time", updatedTime);
   const visibility = gradeVisibility(data?.vis_miles);
@@ -35,16 +35,19 @@ const PrimaryCard = ({ updatedTime, location, data, minMax }) => {
 
   // if (updatedTime) {
   //   updatedAt = calculateRelativeTime(updatedTime);
-  //   setRelativeUpdateTimne
+  //   setRelativeUpdateTine
   // }
 
   useEffect(() => {
     const updateInterval = setInterval(() => {
-      if (updatedTime) {
-        setRelativeUpdateTimne(calculateRelativeTime(updatedTime));
-      }
+      // if (updatedTime) {
+      console.log("interval");
+      const res = calculateRelativeTime(updatedTime);
+      console.log(res);
+      setRelativeUpdateTine(res);
+      // }
 
-      console.log(relativeUpdateTimne);
+      console.log(relativeUpdateTime);
       console.log("ran");
     }, 60000);
     return () => {
@@ -72,7 +75,7 @@ const PrimaryCard = ({ updatedTime, location, data, minMax }) => {
     <div className="py-4 px-8 rounded-xl w-max text-gray-800">
       <div>
         <h2 className="font-bold text-4xl">{`${location?.name}, ${location?.country}`}</h2>
-        <h3 className="text-sm lg:text-base py-2">{relativeUpdateTimne}</h3>
+        <h3 className="text-sm lg:text-base py-2">{relativeUpdateTime}</h3>
       </div>
 
       <div className="flex flex-row items-center">
