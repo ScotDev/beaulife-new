@@ -18,6 +18,7 @@ const calculateRelativeTime = (relativeTimestamp) => {
   const differenceAsMinutes = difference / 60000;
   const rtf = new Intl.RelativeTimeFormat("en", { style: "long" });
   const relativeTime = Math.floor(differenceAsMinutes);
+  console.log(relativeTime);
   if (relativeTime < 2) {
     return "Updated just now";
   }
@@ -46,11 +47,6 @@ const PrimaryCard = ({ updatedTime, location, data, minMax }) => {
       console.log(relativeUpdateTimne);
       console.log("ran");
     }, 60000);
-
-    // if (updatedTime) {
-
-    // }
-
     return () => {
       clearInterval(updateInterval);
     };
