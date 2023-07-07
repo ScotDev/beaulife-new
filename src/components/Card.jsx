@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   BsCloudSunFill,
   BsArrowUpShort,
@@ -12,10 +12,50 @@ import DynamicIcon from "./DynamicIcon";
 import Loading from "./Loading";
 import { gradeVisibility } from "../utils/gradeVisibility";
 
-const PrimaryCard = ({ location, data, minMax }) => {
-  const visibility = gradeVisibility(data?.vis_miles);
+const calculateRelativeTime = (relativeTimestamp) => {
+  const currentTimestamp = Date.now();
+  const difference = currentTimestamp - relativeTimestamp;
+  const differenceAsMinutes = difference / 60000;
   const rtf = new Intl.RelativeTimeFormat("en", { style: "long" });
-  const updatedAt = rtf.format(-2, "minute");
+  const relativeTime = Math.floor(differenceAsMinutes);
+  if (relativeTime < 2) {
+    return "Updated just now";
+  }
+  return `Updated ${rtf.format(-relativeTime, "minute")}`;
+};
+
+const PrimaryCard = ({ updatedTime, location, data, minMax }) => {
+  const [relativeUpdateTimne, setRelativeUpdateTimne] =
+    useState("Updated just now");
+  // console.log("updated time", updatedTime);
+  const visibility = gradeVisibility(data?.vis_miles);
+  // Checks if updatedTime prop exists before attempted to access it.
+  // Without check it will initially be undefined and break the rtf
+
+  // if (updatedTime) {
+  //   updatedAt = calculateRelativeTime(updatedTime);
+  //   setRelativeUpdateTimne
+  // }
+
+  useEffect(() => {
+    const updateInterval = setInterval(() => {
+      if (updatedTime) {
+        setRelativeUpdateTimne(calculateRelativeTime(updatedTime));
+      }
+
+      console.log(relativeUpdateTimne);
+      console.log("ran");
+    }, 60000);
+
+    // if (updatedTime) {
+
+    // }
+
+    return () => {
+      clearInterval(updateInterval);
+    };
+  }, []);
+
   if (!data) {
     return (
       <div className="grid place-items-center py-4 px-8 h=[416px] w-[352px]">
@@ -36,7 +76,7 @@ const PrimaryCard = ({ location, data, minMax }) => {
     <div className="py-4 px-8 rounded-xl w-max text-gray-800">
       <div>
         <h2 className="font-bold text-4xl">{`${location?.name}, ${location?.country}`}</h2>
-        <h3 className="text-sm lg:text-base py-2">{`Updated ${updatedAt}`}</h3>
+        <h3 className="text-sm lg:text-base py-2">{relativeUpdateTimne}</h3>
       </div>
 
       <div className="flex flex-row items-center">

@@ -42,7 +42,7 @@ export default function Home() {
 
   const [locationData] = useLocation();
 
-  console.log(locationData);
+  // console.log(locationData);
 
   // const [weatherData] = useWeatherData(locationData);
   // // // const testAPI = (passedData) => {
@@ -57,15 +57,16 @@ export default function Home() {
         const dailyRes = await getDailyWeatherData(locationData);
         setDailyData(dailyRes);
         const hourlyRes = await getHourlyWeatherData(locationData);
-        console.log(hourlyRes);
+        console.log(dailyRes);
         setHourlyData(hourlyRes);
       } else {
         console.log("Location services disabled");
       }
-      setTimeout(() => {
-        setIsloading(false);
-      }, 700);
     })();
+
+    setTimeout(() => {
+      setIsloading(false);
+    }, 700);
   }, [locationData]);
 
   return (
@@ -80,6 +81,7 @@ export default function Home() {
           <div className="flex flex-col lg:flex-row gap-10 py-4">
             {!isLoading && (
               <PrimaryCard
+                updatedTime={dailyData?.updatedTime}
                 location={dailyData?.location}
                 data={dailyData?.current}
                 minMax={dailyData?.data?.[0]}

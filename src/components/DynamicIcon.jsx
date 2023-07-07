@@ -7,6 +7,8 @@ import {
   BsFillCloudDrizzleFill,
   BsFillCloudRainFill,
   BsFillCloudRainHeavyFill,
+  BsFillCloudSunFill,
+  BsFillMoonFill,
 } from "react-icons/bs";
 
 export default function DynamicIcon({ condition }) {
@@ -17,13 +19,19 @@ export default function DynamicIcon({ condition }) {
     case "Partly cloudy":
       icon = <BsCloudSunFill className="w-full h-full" />;
       break;
-    case "Sunny":
+    // Clear is WeatherAPI's nighttime equivalent to "Sunny"
     case "Clear":
+      icon = <BsFillMoonFill className="w-full h-full" />;
+      break;
+    case "Sunny":
       icon = <BsSunFill className="w-full h-full" />;
       break;
     case "Cloudy":
       icon = <BsFillCloudsFill className="w-full h-full" />;
       break;
+    // case "Partly cloudy":
+    //   icon = <BsFillCloudSunFill className="w-full h-full" />;
+    //   break;
     case "Overcast":
       icon = <BsFillCloudyFill className="w-full h-full" />;
       break;
