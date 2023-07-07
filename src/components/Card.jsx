@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   BsCloudSunFill,
   BsArrowUpShort,
@@ -26,8 +26,10 @@ const calculateRelativeTime = (relativeTimestamp) => {
 };
 
 const PrimaryCard = ({ updatedTime, location, data, minMax }) => {
-  const [relativeUpdateTime, setRelativeUpdateTine] =
+  const [relativeUpdateTime, setRelativeUpdateTime] =
     useState("Updated just now");
+
+  const relativeTimeRef = useRef("Updated just now");
   // console.log("updated time", updatedTime);
   const visibility = gradeVisibility(data?.vis_miles);
   // Checks if updatedTime prop exists before attempted to access it.
@@ -37,19 +39,19 @@ const PrimaryCard = ({ updatedTime, location, data, minMax }) => {
   //   updatedAt = calculateRelativeTime(updatedTime);
   //   setRelativeUpdateTine
   // }
-
   useEffect(() => {
     const updateInterval = setInterval(() => {
       // if (updatedTime) {
       console.log("interval");
+      relativeTimeRef.current = calculateRelativeTime(updatedTime);
       const res = calculateRelativeTime(updatedTime);
-      console.log(res);
-      setRelativeUpdateTine(res);
+      // console.log(res);
+      setRelativeUpdateTime(res);
       // }
-
+      // console.log(relativeTimeRef.current);
       console.log(relativeUpdateTime);
-      console.log("ran");
-    }, 60000);
+      // console.log(relativeTimeVar);
+    }, 6000);
     return () => {
       clearInterval(updateInterval);
     };
@@ -75,6 +77,7 @@ const PrimaryCard = ({ updatedTime, location, data, minMax }) => {
     <div className="py-4 px-8 rounded-xl w-max text-gray-800">
       <div>
         <h2 className="font-bold text-4xl">{`${location?.name}, ${location?.country}`}</h2>
+        <h3 className="text-sm lg:text-base py-2">{relativeTimeRef.current}</h3>
         <h3 className="text-sm lg:text-base py-2">{relativeUpdateTime}</h3>
       </div>
 
