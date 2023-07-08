@@ -1,7 +1,6 @@
 import Signup from "./pages/Signup";
 import Landing from "./pages/Landing";
 import Home from "./pages/Home";
-import Settings from "./pages/Settings";
 import Profile from "./pages/Profile";
 import Callback from "./pages/Callback";
 import { useAuthContext } from "./auth/useAuthContext";
@@ -69,14 +68,6 @@ const router = createBrowserRouter(
         element={
           <PrivateRoute>
             <Home />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="settings"
-        element={
-          <PrivateRoute>
-            <Settings />
           </PrivateRoute>
         }
       />

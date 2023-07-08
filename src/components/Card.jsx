@@ -97,7 +97,7 @@ const PrimaryCard = (props) => {
         </div>
       </div>
       <h3 className="text-2xl py-4">{current?.condition.text}</h3>
-      <div className="flex flex-row justify-evenly lg:justify-start items-center py-4 gap-6">
+      <div className="grid place-items-center grid-cols-2 py-4">
         <div className="flex flex-row items-center font-medium">
           {/* <BsArrowUpShort className="w-8 h-8" /> */}
           <p className="text-2xl">
@@ -114,7 +114,7 @@ const PrimaryCard = (props) => {
         </div>
       </div>
 
-      <div className="flex flex-row justify-evenly lg:justify-start gap-4 items-center pt-6">
+      <div className="flex flex-row justify-evenly gap-4 items-center pt-6 ">
         <div className="flex flex-row items-center  font-medium">
           <BsEye className="w-6 h-6 mr-2" />
           <p className="capitalize">{visibility}</p>
