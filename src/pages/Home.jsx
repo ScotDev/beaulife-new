@@ -1,6 +1,7 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
+
 import { signOutOfFireBaseAuth, firebaseAuth } from "../firebase";
 // import axios from "axios";
 import { useAuthContext } from "../auth/useAuthContext";
@@ -24,9 +25,14 @@ import {
 } from "../utils/getWeatherData";
 
 export default function Home() {
+  const [locationData] = useLocation();
+
+  console.log(locationData);
+  // const dailyData = getDailyWeatherData(locationData);
+
   const [dailyData, setDailyData] = useState([]);
   const [hourlyData, setHourlyData] = useState([]);
-  const [isLoading, setIsloading] = useState(false);
+  const [isLoading, setIsloading] = useState(true);
   const user = useAuthContext();
   // const name = user?.user?.displayName?.split(" ")[0];
   const daily = dailyData?.data?.map((item, index) => {
@@ -40,41 +46,14 @@ export default function Home() {
     );
   });
 
-  const [locationData] = useLocation();
-
-  // console.log(locationData);
-
-  // const [weatherData] = useWeatherData(locationData);
-  // // // const testAPI = (passedData) => {
-  // console.log(weatherData);
-  // };
-
-  // Give me an example of how to use the useMemo or useCallback hook to cache data from an API call.
-
-  const cachedDailyData = async () => {
-    const data = await getDailyWeatherData(locationData);
-    setDailyData(data);
-  };
-  const memoizedDailyData = useMemo(() => cachedDailyData, []);
-  useEffect(() => {
-    memoizedDailyData();
-  }, [memoizedDailyData]);
-
-  const cachedHourlyData = async () => {
-    const data = await getHourlyWeatherData(locationData);
-    setHourlyData(data);
-  };
-  const memoizedHourlyData = useMemo(() => cachedHourlyData, []);
-  useEffect(() => {
-    memoizedHourlyData();
-  }, [memoizedHourlyData]);
-
   useEffect(() => {
     (async () => {
       if (locationData) {
-        setIsloading(true);
-        cachedDailyData();
-        cachedHourlyData();
+        // setIsloading(true);
+        const dailyData = await getDailyWeatherData(locationData);
+        setDailyData(dailyData);
+        const hourlyData = await getHourlyWeatherData(locationData);
+        setHourlyData(hourlyData);
       } else {
         console.log("Location services disabled");
       }
@@ -92,23 +71,18 @@ export default function Home() {
       </div>
       <div className="flex flex-col items-center h-screen">
         <Navbar></Navbar>
-        {isLoading && <Loading />}
+        {/* {isLoading && <Loading />} */}
         <main className="container">
           <div className="flex flex-col lg:flex-row gap-10 py-4">
-            {!isLoading && (
-              <PrimaryCard
-                updatedTime={dailyData?.updatedTime}
-                location={dailyData?.location}
-                data={dailyData?.current}
-                minMax={dailyData?.data?.[0]}
-              />
-            )}
+            <Suspense fallback={<Loading />}>
+              <PrimaryCard data={dailyData} />
+            </Suspense>
 
-            {!isLoading && (
-              <div id="scrollable" className="scroller">
-                {hourly}
-              </div>
-            )}
+            {/* {!isLoading && ( */}
+            <div id="scrollable" className="scroller">
+              {hourly}
+            </div>
+            {/* )} */}
           </div>
           <div className="grid place-items-center gap-6 py-6 w-full lg:w-2/5">
             {!isLoading && daily}

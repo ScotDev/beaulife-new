@@ -25,13 +25,15 @@ const calculateRelativeTime = (relativeTimestamp) => {
   return `Updated ${rtf.format(-relativeTime, "minute")}`;
 };
 
-const PrimaryCard = ({ updatedTime, location, data, minMax }) => {
+const PrimaryCard = (props) => {
+  console.log(props.data);
+  const { updatedTime, location, current, data } = props.data;
   const [relativeUpdateTime, setRelativeUpdateTime] =
     useState("Updated just now");
 
   const relativeTimeRef = useRef("Updated just now");
   // console.log("updated time", updatedTime);
-  const visibility = gradeVisibility(data?.vis_miles);
+  const visibility = gradeVisibility(current?.vis_miles);
   // Checks if updatedTime prop exists before attempted to access it.
   // Without check it will initially be undefined and break the rtf
 
@@ -83,26 +85,26 @@ const PrimaryCard = ({ updatedTime, location, data, minMax }) => {
 
       <div className="flex flex-row items-center">
         <h1 className="font-extrabold text-9xl">
-          {data?.temp_c}
+          {current?.temp_c}
           <span className="text-5xl pl-1">C</span>
         </h1>
         <div className="h-24 w-24 ml-12 lg:ml-16">
-          <DynamicIcon condition={data?.condition.text} />
+          <DynamicIcon condition={current?.condition.text} />
         </div>
       </div>
-      <h3 className="text-2xl py-4">{data?.condition.text}</h3>
+      <h3 className="text-2xl py-4">{current?.condition.text}</h3>
       <div className="flex flex-row justify-evenly lg:justify-start items-center py-4 gap-6">
         <div className="flex flex-row items-center font-medium">
           <BsArrowUpShort className="w-8 h-8" />
           <p className="text-2xl">
-            {minMax?.maxtemp_c.toFixed(0)}
+            {data[0]?.maxtemp_c.toFixed(0)}
             <span className="text-lg pl-0.5">C</span>
           </p>
         </div>
         <div className="flex flex-row items-center  font-medium">
           <BsArrowDownShort className="w-8 h-8" />
           <p className="text-2xl">
-            {minMax?.mintemp_c.toFixed(0)}
+            {data[0]?.mintemp_c.toFixed(0)}
             <span className="text-lg pl-0.5">C</span>
           </p>
         </div>
@@ -115,11 +117,11 @@ const PrimaryCard = ({ updatedTime, location, data, minMax }) => {
         </div>
         <div className="flex flex-row items-center  font-medium">
           <BsWater className="w-6 h-6 mx-2" />
-          <p className=" pl-0.5">{data?.humidity}%</p>
+          <p className=" pl-0.5">{current?.humidity}%</p>
         </div>
         <div className="flex flex-row items-center  font-medium">
           <BsWind className="w-6 h-6 mr-2" />
-          <p>{data?.wind_mph.toFixed(0)} mph</p>
+          <p>{current?.wind_mph.toFixed(0)} mph</p>
         </div>
       </div>
     </div>
@@ -212,8 +214,10 @@ const DailyCard = ({ data }) => {
 const MiniCard = ({ data }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   // console.log(data);
+  const today = new Date();
   const tempDate = new Date(data.date);
   const dateAsDay = tempDate.toLocaleDateString("en-gb", { weekday: "long" });
+  const todayAsDay = today.toLocaleDateString("en-gb", { weekday: "long" });
 
   const toggleState = () => {
     setIsExpanded((isExpanded) => !isExpanded);
@@ -226,7 +230,9 @@ const MiniCard = ({ data }) => {
       {/* <div className="flex flex-row items-center"> */}
       {/* <div className="flex flex-row items-center justify-between w-full"> */}
       <div className="grid place-items-center grid-cols-3 gap-2 w-full">
-        <div className="font-medium text-lg py-2 capitalize ">{dateAsDay}</div>
+        <div className="font-medium text-lg py-2 capitalize ">
+          {dateAsDay === todayAsDay ? "Today" : dateAsDay}
+        </div>
         <div className="h-8 lg:h-16 lg:w-16 mx-auto">
           <DynamicIcon condition={data?.condition} />
         </div>
