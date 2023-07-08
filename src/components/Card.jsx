@@ -26,12 +26,11 @@ const calculateRelativeTime = (relativeTimestamp) => {
 };
 
 const PrimaryCard = (props) => {
-  console.log(props.data);
-  const { updatedTime, location, current, data } = props.data;
+  // console.log(props);
+  const { updatedTime, location, current, data, isLoading, error } = props.data;
   const [relativeUpdateTime, setRelativeUpdateTime] =
     useState("Updated just now");
 
-  const relativeTimeRef = useRef("Updated just now");
   // console.log("updated time", updatedTime);
   const visibility = gradeVisibility(current?.vis_miles);
   // Checks if updatedTime prop exists before attempted to access it.
@@ -59,9 +58,14 @@ const PrimaryCard = (props) => {
     };
   }, []);
 
-  if (!data) {
+  if (!data || isLoading) {
+    return <Loading />;
+  }
+
+  if (error) {
+    console.log("No data found");
     return (
-      <div className="grid place-items-center py-4 px-8 h=[416px] w-[352px]">
+      <div className="grid place-items-center py-4 px-8 h-[416px] w-[352px]">
         <p className="text-lg font-medium">No data found</p>
         <p className="text-center pt-4">
           (Location services may be disabled on your device)

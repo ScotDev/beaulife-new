@@ -3,9 +3,9 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import { signOutOfFireBaseAuth, firebaseAuth } from "../firebase";
-// import axios from "axios";
+
 import { useAuthContext } from "../auth/useAuthContext";
-// import { getLocalAuthData } from "../auth/LocalStorage";
+
 import { GiHamburgerMenu } from "react-icons/gi";
 import Button from "../components/Button";
 import {
@@ -17,7 +17,7 @@ import {
 import Navbar from "../components/Navbar";
 import Loading from "../components/Loading";
 import useLocation from "../hooks/useLocation";
-// import useWeatherData from "../hooks/useWeatherData";
+
 import {
   getCurrentWeatherData,
   getDailyWeatherData,
@@ -27,13 +27,13 @@ import {
 export default function Home() {
   const [locationData] = useLocation();
 
-  console.log(locationData);
+  // console.log(locationData);
   // const dailyData = getDailyWeatherData(locationData);
 
   const [dailyData, setDailyData] = useState([]);
   const [hourlyData, setHourlyData] = useState([]);
   const [isLoading, setIsloading] = useState(true);
-  const user = useAuthContext();
+  // const user = useAuthContext();
   // const name = user?.user?.displayName?.split(" ")[0];
   const daily = dailyData?.data?.map((item, index) => {
     return <MiniCard key={index} data={item} />;
@@ -49,10 +49,11 @@ export default function Home() {
   useEffect(() => {
     (async () => {
       if (locationData) {
-        // setIsloading(true);
         const dailyData = await getDailyWeatherData(locationData);
         setDailyData(dailyData);
+        console.log(dailyData);
         const hourlyData = await getHourlyWeatherData(locationData);
+        console.log(hourlyData);
         setHourlyData(hourlyData);
       } else {
         console.log("Location services disabled");
@@ -75,7 +76,11 @@ export default function Home() {
         <main className="container">
           <div className="flex flex-col lg:flex-row gap-10 py-4">
             <Suspense fallback={<Loading />}>
-              <PrimaryCard data={dailyData} />
+              <PrimaryCard
+                data={dailyData}
+                isLoading={isLoading}
+                // error={error}
+              />
             </Suspense>
 
             {/* {!isLoading && ( */}

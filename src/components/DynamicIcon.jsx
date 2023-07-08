@@ -9,6 +9,10 @@ import {
   BsFillCloudRainHeavyFill,
   BsFillCloudSunFill,
   BsFillMoonFill,
+  BsCloudFogFill,
+  BsFillCloudHaze2Fill,
+  BsFillCloudLightningRainFill,
+  BsFillCloudSnowFill,
 } from "react-icons/bs";
 
 export default function DynamicIcon({ condition }) {
@@ -36,21 +40,30 @@ export default function DynamicIcon({ condition }) {
       icon = <BsFillCloudyFill className="w-full h-full" />;
       break;
     case "Mist":
+      icon = <BsFillCloudHaze2Fill className="w-full h-full" />;
+      break;
+    case "Fog":
       icon = <BsFillCloudHazeFill className="w-full h-full" />;
       break;
     case "Patchy rain possible":
-      icon = <BsFillCloudDrizzleFill className="w-full h-full" />;
-      break;
     case "Light rain":
-      icon = <BsFillCloudRainFill className="w-full h-full" />;
+    case "Light rain shower":
+      icon = <BsFillCloudDrizzleFill className="w-full h-full" />;
       break;
     case "Moderate rain":
     case "Heavy rain":
+    case "Moderate or heavy rain shower":
       icon = <BsFillCloudRainHeavyFill className="w-full h-full" />;
       break;
+    case condition.includes("thunder"):
+      icon = <BsFillCloudLightningRainFill className="w-full h-full" />;
+      break;
+    case condition.includes("snow"):
+      icon = <BsFillCloudSnowFill className="w-full h-full" />;
+      break;
     default:
-      icon = <BsSunFill className="w-full h-full" />;
-      console.log("Weather type not found");
+      icon = <BsFillCloudyFill className="w-full h-full" />;
+      // console.log("Weather type not found");
       break;
   }
 
