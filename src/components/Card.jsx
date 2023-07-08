@@ -99,14 +99,14 @@ const PrimaryCard = (props) => {
       <h3 className="text-2xl py-4">{current?.condition.text}</h3>
       <div className="flex flex-row justify-evenly lg:justify-start items-center py-4 gap-6">
         <div className="flex flex-row items-center font-medium">
-          <BsArrowUpShort className="w-8 h-8" />
+          {/* <BsArrowUpShort className="w-8 h-8" /> */}
           <p className="text-2xl">
             {data[0]?.maxtemp_c.toFixed(0)}
             <span className="text-lg pl-0.5">C</span>
           </p>
         </div>
         <div className="flex flex-row items-center  font-medium">
-          <BsArrowDownShort className="w-8 h-8" />
+          {/* <BsArrowDownShort className="w-8 h-8" /> */}
           <p className="text-2xl">
             {data[0]?.mintemp_c.toFixed(0)}
             <span className="text-lg pl-0.5">C</span>
