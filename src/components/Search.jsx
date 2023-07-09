@@ -1,12 +1,10 @@
 import { useState, useEffect } from "react";
 import { searchLocation } from "../utils/searchLocation";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Search() {
   const [searchTerm, setSearchTerm] = useState("");
   const [results, setResults] = useState([]);
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(async () => {
@@ -40,10 +38,7 @@ export default function Search() {
 
   const handleClick = (selectedResult) => {
     if (selectedResult) {
-      // console.log(selectedResult.lat, selectedResult.lon, selectedResult.url);
-      navigate(
-        `/search/${selectedResult.lat}/${selectedResult.lon}/${selectedResult.url}`
-      );
+      console.log(selectedResult.lat, selectedResult.lon, selectedResult.url);
       setResults([]);
     }
   };
@@ -56,23 +51,36 @@ export default function Search() {
           type="text"
           onChange={handleInputChange}
         />
-        {/* <button type="submit">Search</button> */}
       </form>
       <ul className="z-20 absolute w-full rounded-md m-0 glass-card mt-2">
         {results.length > 0 &&
-          results.map((result) => (
-            <li
-              key={result.id}
-              className=" py-2 px-4 flex flex-col rounded-md gap-1 hover:bg-gray-50 cursor-pointer"
-              onClick={() => {
-                handleClick(result);
-              }}
-            >
-              <h3 className="font-medium">{result.name}</h3>
-              <h5 className="text-sm">{result.region}</h5>
-              <h4 className="">{result.country}</h4>
-            </li>
-          ))}
+          results.map((result) => {
+            if (result.lat && result.lon && result.url) {
+              return (
+                <Link
+                  to={`/search/${result.lat}/${result.lon}/${result.url}`}
+                  onClick={() => {
+                    handleClick(result);
+                  }}
+                >
+                  <li
+                    key={result.id}
+                    className=" py-2 px-4 flex flex-col rounded-md gap-1 hover:bg-gray-50 cursor-pointer"
+                  >
+                    <h3 className="font-medium">{result.name}</h3>
+                    <h5 className="text-sm">{result.region}</h5>
+                    <h4 className="">{result.country}</h4>
+                  </li>
+                </Link>
+              );
+            } else {
+              return (
+                <li className=" py-2 px-4 flex flex-col rounded-md gap-1 cursor-default">
+                  <h3 className="font-medium">{result.name}</h3>
+                </li>
+              );
+            }
+          })}
       </ul>
     </div>
   );
