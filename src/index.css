@@ -23,7 +23,7 @@ body {
     @apply flex flex-col pt-12 px-2 mx-auto w-full max-w-screen-xl;
   }
   .background {
-    @apply min-w-full min-h-screen absolute bg-blue-50 -z-10 overflow-x-hidden;
+    @apply min-w-full min-h-screen absolute bg-slate-200 -z-10 overflow-x-hidden;
   }
   .background-color-blueish {
     @apply absolute top-20 left-[28vw]  w-96 lg:w-[40rem] h-96 lg:h-[40rem] bg-gradient-to-r from-blue-700 to-violet-500 rounded-full mix-blend-multiply filter blur-[96px] opacity-70;

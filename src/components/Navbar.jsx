@@ -8,10 +8,10 @@ export default function Navbar() {
   const user = useAuthContext();
   return (
     <div className="bg-transparent w-screen">
-      <div className="flex items-center justify-between w-full h-fit lg:pt-4 px-6 lg:pl-4 lg:pr-0 mx-auto max-w-screen-xl text-gray-800 ">
+      <div className="flex items-center justify-between w-full h-fit lg:pt-4 pl-6 lg:pl-4 lg:pr-0 mx-auto max-w-screen-xl text-gray-800 ">
         <Link to="../home">
           <div>
-            <p className="font-bold text-xl underline underline-offset-2 decoration-purple-600 font-display">
+            <p className="font-bold text-base lg:text-xl underline underline-offset-2 decoration-purple-600 font-display">
               beaulife
             </p>
           </div>

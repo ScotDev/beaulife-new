@@ -25,10 +25,10 @@ import { gradeVisibility } from "../utils/gradeVisibility";
 
 const PrimaryCard = ({ data }) => {
   return (
-    <div className="py-4 px-8 rounded-xl w-max text-gray-800">
-      <div>
+    <div className="py-4 px-8 rounded-xl  max-w-prose text-gray-800">
+      <div className="pb-4 ">
         <h2 className="font-bold text-4xl">{`${data.location.name}, ${data.location.country}`}</h2>
-        <h3 className="text-sm lg:text-base py-2">Updated just now</h3>
+        <h3 className="lg:text-lg py-2">{data.location.region}</h3>
       </div>
 
       <div className="flex flex-row items-center">
@@ -41,7 +41,7 @@ const PrimaryCard = ({ data }) => {
         </div>
       </div>
       <h3 className="text-2xl py-4">{data.now.condition}</h3>
-      <div className="grid place-items-center grid-cols-2 py-4">
+      <div className="grid place-items-center grid-flow-col py-4">
         <div className="flex flex-row items-center font-medium">
           <p className="text-2xl">
             {data.now.maxtemp_c}
