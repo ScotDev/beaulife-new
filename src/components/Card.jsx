@@ -143,7 +143,7 @@ const DailyCard = ({ data }) => {
       {/* </div> */}
       {isExpanded && (
         // <div className="flex flex-row gap-4 lg:gap-0 justify-evenly items-center pt-6 lg:pt-6">
-        <div className="grid place-items-center grid-cols-3 gap-2 pt-4 lg:pt-6 w-full">
+        <div className="grid place-items-center grid-cols-3 gap-2 pt-8 w-full">
           <div className="flex flex-row items-center">
             <BsEye className="w-6 h-6 mx-2" />
             <p className="font-medium">{gradeVisibility(data.avgvis_miles)}</p>

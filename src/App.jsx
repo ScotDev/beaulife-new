@@ -19,6 +19,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import PublicRoute from "./components/PublicRoute";
 import Login from "./pages/Login";
 import ResetPassword from "./pages/ResetPassword";
+import SearchResult from "./pages/SearchResult";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -76,6 +77,14 @@ const router = createBrowserRouter(
         element={
           <PrivateRoute>
             <Profile />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="search/:lat/:long/:url"
+        element={
+          <PrivateRoute>
+            <SearchResult />
           </PrivateRoute>
         }
       />

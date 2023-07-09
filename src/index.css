@@ -50,7 +50,7 @@ body {
     @apply drop-shadow backdrop-blur-3xl backdrop-opacity-5 backdrop-invert bg-white/20;
   } */
   .glass-card {
-    @apply drop-shadow bg-white rounded-md bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-25 cursor-pointer;
+    @apply shadow-md bg-white rounded-md bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-25 cursor-pointer;
   }
   /* .scroll-item:first-of-type {
     @apply pl-2;
