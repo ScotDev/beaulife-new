@@ -1,62 +1,29 @@
 import { useEffect, useState, Suspense } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
-import axios from "axios";
-
-import { signOutOfFireBaseAuth, firebaseAuth } from "../firebase";
-
-import { useAuthContext } from "../auth/useAuthContext";
-
-import { GiHamburgerMenu } from "react-icons/gi";
-import Button from "../components/Button";
-import {
-  PrimaryCard,
-  HourlyCard,
-  DailyCard,
-  MiniCard,
-} from "../components/Card";
+import { PrimaryCard, HourlyCard, DailyCard } from "../components/Card";
 import Navbar from "../components/Navbar";
 import Loading from "../components/Loading";
 import useLocation from "../hooks/useLocation";
 
-import {
-  getCurrentWeatherData,
-  getDailyWeatherData,
-  getHourlyWeatherData,
-} from "../utils/getWeatherData";
+import { getWeatherData } from "../utils/getWeatherData";
 
 export default function Home() {
   const [locationData] = useLocation();
-
-  // console.log(locationData);
-  // const dailyData = getDailyWeatherData(locationData);
-
-  const [dailyData, setDailyData] = useState([]);
-  const [hourlyData, setHourlyData] = useState([]);
+  const [data, setData] = useState(null);
   const [isLoading, setIsloading] = useState(true);
-  // const user = useAuthContext();
-  // const name = user?.user?.displayName?.split(" ")[0];
-  const daily = dailyData?.data?.map((item, index) => {
-    return <MiniCard key={index} data={item} />;
-  });
-  const hourly = hourlyData?.data?.map((item, index) => {
-    return (
-      <div key={index} className="scroll-item">
-        <HourlyCard data={item} />
-      </div>
-    );
-  });
+  const [error, setError] = useState("");
 
   useEffect(() => {
     (async () => {
       if (locationData) {
-        const dailyData = await getDailyWeatherData(locationData);
-        setDailyData(dailyData);
-        console.log(dailyData);
-        const hourlyData = await getHourlyWeatherData(locationData);
-        console.log(hourlyData);
-        setHourlyData(hourlyData);
-      } else {
-        console.log("Location services disabled");
+        setError("");
+        setIsloading(true);
+        const res = await getWeatherData(locationData.coords);
+        if (!res.error) {
+          setData(res);
+        } else {
+          console.log(res.axiosError);
+          setError(res.error);
+        }
       }
     })();
 
@@ -72,29 +39,47 @@ export default function Home() {
       </div>
       <div className="flex flex-col items-center h-screen">
         <Navbar></Navbar>
-        {/* {isLoading && <Loading />} */}
+
         <main className="container">
           <div className="flex flex-col lg:flex-row gap-10 py-4">
-            <Suspense fallback={<Loading />}>
-              <PrimaryCard
-                data={dailyData}
-                isLoading={isLoading}
-                // error={error}
-              />
-            </Suspense>
-
-            {/* {!isLoading && ( */}
-            <div id="scrollable" className="scroller">
-              {hourly}
+            <div className="grid place-content-center">
+              {isLoading && <Loading />}
+              {error && (
+                <div className="grid place-items-center py-4 px-8 ">
+                  <p className="text-lg font-medium">An error occured</p>
+                  <p className="text-center pt-4 max-w-xs">
+                    {error}
+                    <span className="px-1">
+                      (Location services may be disabled on your device)
+                    </span>
+                  </p>
+                </div>
+              )}
             </div>
-            {/* )} */}
+
+            {data && !isLoading && <PrimaryCard data={data} />}
+
+            <div id="scrollable" className="scroller">
+              {data &&
+                !isLoading &&
+                data?.data?.hourlyData?.map((item, index) => {
+                  return (
+                    <div key={index} className="scroll-item">
+                      <HourlyCard data={item} />
+                    </div>
+                  );
+                })}
+            </div>
           </div>
           <div className="grid place-items-center gap-6 py-6 w-full lg:w-2/5">
-            {!isLoading && daily}
+            {data &&
+              !isLoading &&
+              data?.data?.dailyData?.map((item, index) => {
+                return <DailyCard key={index} data={item} />;
+              })}
           </div>
         </main>
       </div>
     </>
   );
-  // }
 }

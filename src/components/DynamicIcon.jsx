@@ -17,6 +17,9 @@ import {
 
 export default function DynamicIcon({ condition }) {
   let icon;
+  if (!condition)
+    return (icon = <BsFillCloudyFill className="w-full h-full" />);
+
   switch (condition) {
     // in future reference this list
     // https://www.weatherapi.com/docs/weather_conditions.json
