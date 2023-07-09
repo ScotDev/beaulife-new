@@ -42,7 +42,7 @@ export default function Home() {
 
         <main className="container">
           <div className="flex flex-col lg:flex-row gap-10 py-4">
-            <div className="grid place-content-center">
+            <div className="grid place-items-center mx-auto">
               {isLoading && <Loading />}
               {error && (
                 <div className="grid place-items-center py-4 px-8 ">
