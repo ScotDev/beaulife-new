@@ -46,7 +46,7 @@ export default function Profile() {
       <div className="flex flex-col items-center h-screen">
         <Navbar />
         <div className="background">
-          <div className="background-color-blueish"></div>
+          <div className="background-color __glow"></div>
         </div>
         <main className="container">
           <div className="flex items-center flex-col mx-auto pt-4">

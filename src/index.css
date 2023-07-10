@@ -11,18 +11,6 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
-  --custom-gradient: linear-gradient(
-    90deg,
-    #6467f2 0%,
-    #a855f7 50%,
-    #ec4699 100%
-  );
-  /* --custom-gradient: linear-gradient(
-    90deg,
-    rgba(99, 102, 241, 1) 0%,
-    rgba(168, 85, 247, 1) 50%,
-    rgba(236, 72, 153, 1) 100%
-  ); */
 }
 html,
 body {
@@ -37,19 +25,33 @@ body {
   .background {
     @apply min-w-full min-h-screen absolute bg-slate-200 -z-10 overflow-x-hidden;
   }
-  .background-color-blueish {
-    @apply absolute top-20 left-[28vw] w-96 lg:w-[40rem] h-96 lg:h-[40rem] rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 mix-blend-multiply filter blur-[96px] opacity-70;
+  .background__dark {
+    @apply min-w-full min-h-screen absolute bg-gradient-to-b from-gray-900 to-gray-600 -z-10 overflow-x-hidden;
+  }
+  .background-color {
+    @apply absolute top-20 left-[28vw] w-96 lg:w-[40rem] h-96 lg:h-[40rem] rounded-full bg-gradient-to-r mix-blend-multiply filter blur-[96px] opacity-70;
     /* Safari won't display anything with blur filter otherwise */
     -webkit-transform: translate3d(0, 0, 0);
     -moz-transform: translate3d(0, 0, 0);
   }
-
-  .background-color-pinkish {
-    @apply absolute top-20 left-[28vw] w-96 lg:w-[40rem] h-96 lg:h-[40rem] rounded-full mix-blend-multiply filter blur-[96px]  opacity-70;
-    background-image: var(--custom-gradient);
-    /* Safari won't display anything with blur filter otherwise */
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
+  /* https://hypercolor.dev/ */
+  .__sea {
+    @apply from-indigo-500 via-purple-500 to-pink-500;
+  }
+  .__ocean {
+    @apply from-green-300 via-blue-500 to-purple-600;
+  }
+  .__pandora {
+    @apply from-green-200 via-green-400 to-purple-700;
+  }
+  .__neon {
+    @apply from-rose-500 to-indigo-700;
+  }
+  .__arandele {
+    @apply from-blue-100 via-blue-300 to-blue-500;
+  }
+  .__glow {
+    @apply from-gray-300 via-fuchsia-600 to-orange-600;
   }
 
   .btn-primary {
@@ -64,18 +66,9 @@ body {
   .scroll-item {
     @apply h-fit;
   }
-  /* .glass-card-old {
-    @apply drop-shadow backdrop-blur-3xl backdrop-opacity-5 backdrop-invert bg-white/20;
-  } */
   .glass-card {
     @apply shadow-md bg-white rounded-md bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-25 cursor-pointer;
   }
-  /* .scroll-item:first-of-type {
-    @apply pl-2;
-  } */
-  /* .scroll-item:last-of-type {
-    @apply pr-2;
-  } */
 }
 
 /* @media (min-width: 1024px) {

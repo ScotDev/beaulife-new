@@ -35,7 +35,7 @@ export default function Home() {
   return (
     <>
       <div className="background">
-        <div className="background-color-pinkish"></div>
+        <div className="background-color __sea"></div>
       </div>
       <div className="flex flex-col items-center h-screen">
         <Navbar></Navbar>
