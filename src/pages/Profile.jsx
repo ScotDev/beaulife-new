@@ -89,6 +89,7 @@ export default function Profile() {
               <li className="font-medium">Speed units</li>
               <li className="font-medium">Time format</li>
               <li className="font-medium">Unit precision</li>
+              <li className="font-medium">Always on dark mode</li>
             </ul>
 
             {/* <div className="flex items-center mb-6 min-w-fit w-full">
