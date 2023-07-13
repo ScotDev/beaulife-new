@@ -21,7 +21,7 @@ export default function Home() {
         const res = await getWeatherData(locationData.coords);
         if (!res.error) {
           setData(res);
-          if (res.now.is_day) {
+          if (!res.now.is_day) {
             document.body.classList.add("dark");
           }
         } else {
