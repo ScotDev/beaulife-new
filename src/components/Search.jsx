@@ -46,29 +46,7 @@ export default function Search() {
   return (
     <div className="w-full rounded-xl relative">
       <form onSubmit={handleSubmit}>
-        {/* <div class="relative text-gray-600 focus-within:text-gray-400">
-          <span class="absolute inset-y-0 left-0 flex items-center pl-2">
-            <svg
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-              class="w-6 h-6"
-            >
-              <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-            </svg>
-          </span>
-          <input
-            type="search"
-            name="q"
-            class="py-2 text-sm text-white bg-gray-800 rounded-md pl-10 focus:outline-none focus:bg-gray-80"
-            placeholder="Search"
-            autocomplete="off"
-          />
-        </div> */}
-        <div class="relative text-gray-700 focus-within:text-gray-800">
+        <div className="relative text-gray-700 dark:text-gray-300 dark:focus-within:text-gray-200 focus-within:text-gray-800">
           <span class="absolute inset-y-0 left-0 flex items-center pl-2 z-20">
             <svg
               fill="none"
@@ -83,11 +61,11 @@ export default function Search() {
             </svg>
           </span>
           <input
-            className="w-full shadow-sm shadow-slate-300 glass-card px-4 h-10 pl-10 pr-2 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-opacity-50"
+            className="w-full shadow-sm shadow-slate-300 dark:shadow-none glass-card px-4 h-10 pl-10 pr-2 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-opacity-50"
             type="search"
             name="q"
             placeholder="Search"
-            autocomplete="off"
+            autoComplete="off"
             onChange={handleInputChange}
           />
         </div>

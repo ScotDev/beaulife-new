@@ -34,8 +34,8 @@ export default function SearchResult() {
 
   return (
     <>
-      <div className="background">
-        <div className="background-color __ocean"></div>
+      <div className="background dark:background__dark">
+        <div className="background-color __sea dark:__glow"></div>
       </div>
       <div className="flex flex-col items-center h-screen">
         <Navbar />

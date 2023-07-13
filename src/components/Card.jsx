@@ -25,7 +25,7 @@ import { gradeVisibility } from "../utils/gradeVisibility";
 
 const PrimaryCard = ({ data }) => {
   return (
-    <div className="py-4 px-8 rounded-xl  max-w-prose text-gray-800">
+    <div className="py-4 px-8 rounded-xl  max-w-prose text-gray-800 dark:text-gray-300">
       <div className="pb-4 ">
         <h2 className="font-bold text-4xl">{`${data.location.name}, ${data.location.country}`}</h2>
         <h3 className="lg:text-lg py-2">{data.location.region}</h3>
@@ -84,7 +84,7 @@ const HourlyCard = ({ data }) => {
     minute: "2-digit",
   });
   return (
-    <div className="pb-6 pt-4 px-8 rounded-xl l w-full h-full lg:w-fit glass-card text-gray-800 text-center ">
+    <div className="pb-6 pt-4 px-8 rounded-xl l w-full h-full lg:w-fit glass-card text-gray-800 dark:text-gray-300 text-center ">
       <div className="flex flex-col lg:items-center lg:justify-center">
         <div className="flex flex-col">
           <div className="font-medium pb-2">{parsedTime}</div>
@@ -117,7 +117,7 @@ const DailyCard = ({ data }) => {
 
   return (
     <div
-      className="py-6 px-8 rounded-xl l w-full glass-card text-gray-800 flex flex-col items-center justify-between "
+      className="py-6 px-8 rounded-xl l w-full glass-card text-gray-800 dark:text-gray-300 flex flex-col items-center justify-between "
       onClick={toggleState}
     >
       {/* <div className="flex flex-row items-center"> */}
@@ -134,7 +134,7 @@ const DailyCard = ({ data }) => {
             {data.maxtemp_c}
             <span className="text-base pl-0.5">C</span>
           </div>
-          <div className="text-3xl text-gray-500">
+          <div className="text-3xl text-gray-500 dark:text-gray-400">
             {data.mintemp_c}
             <span className="text-base pl-0.5">C</span>
           </div>

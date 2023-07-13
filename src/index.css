@@ -25,11 +25,14 @@ body {
   .background {
     @apply min-w-full min-h-screen absolute bg-slate-200 -z-10 overflow-x-hidden;
   }
+  .dark-background {
+    @apply min-w-full min-h-screen absolute bg-slate-900 -z-10 overflow-x-hidden;
+  }
   .background__dark {
     @apply min-w-full min-h-screen absolute bg-gradient-to-b from-gray-900 to-gray-600 -z-10 overflow-x-hidden;
   }
   .background-color {
-    @apply absolute top-20 left-[28vw] w-96 lg:w-[40rem] h-96 lg:h-[40rem] rounded-full bg-gradient-to-r mix-blend-multiply filter blur-[96px] opacity-70;
+    @apply absolute top-20 left-[28vw] w-96 lg:w-[40rem] h-96 lg:h-[40rem] rounded-full bg-gradient-to-r  filter blur-[96px] opacity-70;
     /* Safari won't display anything with blur filter otherwise */
     -webkit-transform: translate3d(0, 0, 0);
     -moz-transform: translate3d(0, 0, 0);

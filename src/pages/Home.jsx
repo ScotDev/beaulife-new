@@ -11,6 +11,7 @@ export default function Home() {
   const [data, setData] = useState(null);
   const [isLoading, setIsloading] = useState(true);
   const [error, setError] = useState("");
+  // const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -20,6 +21,9 @@ export default function Home() {
         const res = await getWeatherData(locationData.coords);
         if (!res.error) {
           setData(res);
+          if (res.now.is_day) {
+            document.body.classList.add("dark");
+          }
         } else {
           console.log(res.axiosError);
           setError(res.error);
@@ -32,13 +36,25 @@ export default function Home() {
     }, 700);
   }, [locationData]);
 
+  // const toggleDarkMode = () => {
+  //   if (document) {
+  //     document.body.classList.toggle("dark");
+  //   }
+  // };
+
   return (
     <>
-      <div className="background">
-        <div className="background-color __sea"></div>
+      <div className="background dark:background__dark">
+        <div className="background-color __sea dark:__glow"></div>
       </div>
       <div className="flex flex-col items-center h-screen">
         <Navbar></Navbar>
+        {/* <button
+          onClick={toggleDarkMode}
+          className=" p-2 rounded-full bg-gray-100 dark:bg-gray-800"
+        >
+          Toggle
+        </button> */}
 
         <main className="container">
           <div className="flex flex-col lg:flex-row gap-10 py-4">
