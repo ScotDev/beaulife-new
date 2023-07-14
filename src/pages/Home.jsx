@@ -4,14 +4,16 @@ import Navbar from "../components/Navbar";
 import Loading from "../components/Loading";
 import useLocation from "../hooks/useLocation";
 
+import { setSessionStorageValue } from "../utils/sessionStorage";
+
 import { getWeatherData } from "../utils/getWeatherData";
 
 export default function Home() {
   const [locationData] = useLocation();
+
   const [data, setData] = useState(null);
   const [isLoading, setIsloading] = useState(true);
   const [error, setError] = useState("");
-  // const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -21,9 +23,10 @@ export default function Home() {
         const res = await getWeatherData(locationData.coords);
         if (!res.error) {
           setData(res);
-          if (!res.now.is_day) {
-            document.body.classList.add("dark");
-          }
+          setSessionStorageValue("isDark", !res.now.is_day);
+          // if (res.now.is_day) {
+          //   document.body.classList.add("dark");
+          // }
         } else {
           console.log(res.axiosError);
           setError(res.error);
@@ -41,6 +44,9 @@ export default function Home() {
   //     document.body.classList.toggle("dark");
   //   }
   // };
+  // const handleClick = () => {
+  //   setSessionStorageValue("isDark", true);
+  // };
 
   return (
     <>
@@ -50,8 +56,8 @@ export default function Home() {
       <div className="flex flex-col items-center h-screen">
         <Navbar></Navbar>
         {/* <button
-          onClick={toggleDarkMode}
-          className=" p-2 rounded-full bg-gray-100 dark:bg-gray-800"
+          onClick={handleClick}
+          className=" p-2 rounded-md bg-gray-100 dark:bg-gray-800"
         >
           Toggle
         </button> */}
