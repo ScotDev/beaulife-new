@@ -67,13 +67,13 @@ export default function Home() {
             <div className="grid place-items-center mx-auto">
               {isLoading && <Loading />}
               {error && (
-                <div className="grid place-items-center py-4 px-8 ">
+                <div className="grid place-items-center py-4 px-8 dark:text-gray-200">
                   <p className="text-lg font-medium">An error occured</p>
-                  <p className="text-center pt-4 max-w-xs">
+                  <p className="text-center pt-4 max-w-prose">
                     {error}
-                    <span className="px-1">
+                    {/* <span className="px-1">
                       (Location services may be disabled on your device)
-                    </span>
+                    </span> */}
                   </p>
                 </div>
               )}

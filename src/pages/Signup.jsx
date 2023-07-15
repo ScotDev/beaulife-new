@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { useNavigate, Link } from "react-router-dom";
 import { useSignUp } from "../auth/useSignUp";
-import { useAuthContext } from "../auth/useAuthContext";
 import { parseFirebaseAuthError } from "../auth/firebaseErrors";
 
 export default function Signup() {
@@ -13,6 +12,7 @@ export default function Signup() {
   // Hooks
   const navigate = useNavigate();
 
+  // TO-DO Condense into one form state
   const [email, setEmail] = useState("");
   const [nickName, setnickName] = useState("");
   const [password, setPassword] = useState("");
@@ -25,7 +25,7 @@ export default function Signup() {
   // Also normalise other fields?
   const normalizeWhitespace = async () => {
     password.replace(/\s/g, "");
-    // password2.replace(/\s/g, "")
+    email.replace(/\s/g, "");
   };
 
   const handleGoogleSignIn = async () => {
@@ -72,15 +72,16 @@ export default function Signup() {
 
   return (
     <>
-      <main className="flex flex-col items-center pt-8 h-screen">
+      <div className="background dark:background__dark"></div>
+      <main className="flex flex-col items-center pt-8 h-screen dark:text-gray-100">
         <h1 className="text-2xl font-bold font-display">beaulife.</h1>
         <h2 className="text-3xl font-medium pt-7">Let's get started!</h2>
         <h3 className="text-lg font-medium pt-4">Create an account</h3>
 
-        <div className="rounded-t-[32px] bg-gray-200 h-full w-screen pt-12 mt-14 flex flex-col items-center">
+        <div className="rounded-t-[32px] h-full w-screen mt-14 pt-16 flex flex-col items-center glass-card bg-gray-600">
           <div className="flex flex-col items-center w-[315px]">
             <form
-              className="h-[276px] w-full flex flex-col justify-between"
+              className="h-[300px] w-full flex flex-col justify-between"
               onSubmit={handleSubmit}
             >
               <input
@@ -111,11 +112,11 @@ export default function Signup() {
                   setPassword(e.target.value);
                 }}
               ></input>
-              <p className="h-8 min-w-fit w-full px-4 py-1 text-sm text-gray-700">
+              <p className="h-8 min-w-fit w-full px-4 py-1 mb-4 text-sm text-gray-700 dark:text-gray-200">
                 {error}
               </p>
               <button
-                className="text-white bg-purple-600 rounded-md min-w-fit w-full h-[48px] px-4 mt-4 font-medium text-lg"
+                className="btn-primary"
                 type="submit"
                 disabled={isLoading}
               >
@@ -124,13 +125,15 @@ export default function Signup() {
             </form>
 
             <div className="relative flex py-5 items-center w-full">
-              <div className="flex-grow border-t border-gray-900"></div>
-              <span className="flex-shrink mx-2 text-gray-700">or</span>
-              <div className="flex-grow border-t border-gray-900"></div>
+              <div className="flex-grow border-t border-gray-900 dark:border-gray-300"></div>
+              <span className="flex-shrink mx-2 text-gray-700 dark:text-gray-200">
+                or
+              </span>
+              <div className="flex-grow border-t border-gray-900 dark:border-gray-300"></div>
             </div>
 
             <button
-              className="border border-1 border-black rounded-md min-w-fit w-full h-[48px] px-4 font-medium text-lg"
+              className="btn-google"
               onClick={handleGoogleSignIn}
               disabled={isLoading}
             >

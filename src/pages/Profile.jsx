@@ -64,7 +64,7 @@ export default function Profile() {
         <div className="background dark:background__dark">
           <div className="background-color __glow dark:__ocean"></div>
         </div>
-        <main className="container text-gray-800 dark:text-gray-300">
+        <main className="container text-gray-800 dark:text-gray-100">
           <div className="flex items-center flex-col mx-auto pt-4">
             <div className="flex items-center pb-8 mb-4 min-w-fit w-full">
               <div className="rounded-full overflow-hidden ring-offset-2 ring-purple-300 ring-2 h-12 w-12 glass-card cursor-default">
@@ -82,7 +82,7 @@ export default function Profile() {
                 <h3 className="font-medium text-lg">
                   {user?.user?.displayName || "Username"}
                 </h3>
-                <p className="text-gray-700 dark:text-gray-400 mt-2">
+                <p className="text-gray-700 dark:text-gray-300 mt-2">
                   {user?.user?.email || "email@test.com"}
                 </p>
               </div>
@@ -95,7 +95,7 @@ export default function Profile() {
                 </label>
                 <select
                   id="underline_select"
-                  className="block py-2.5 px-0 w-full text-base text-gray-800 dark:text-gray-400 bg-transparent border-0 border-b-2 border-purple-400  appearance-none dark:border-purple-400 focus:outline-none focus:ring-0 focus:border-gray-200 peer"
+                  className="block py-2.5 px-0 w-full text-base text-gray-800 dark:text-gray-300 bg-transparent border-0 border-b-2 border-purple-400  appearance-none dark:border-purple-400 focus:outline-none focus:ring-0 focus:border-gray-200 peer"
                 >
                   <option selected disabled value="EN">
                     English

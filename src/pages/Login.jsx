@@ -56,12 +56,13 @@ export default function Login() {
 
   return (
     <>
-      <main className="flex flex-col items-center pt-8 h-screen">
+      <div className="background dark:background__dark"></div>
+      <main className="flex flex-col items-center pt-8 h-screen dark:text-gray-100">
         <h1 className="text-2xl font-bold font-display">beaulife.</h1>
         <h2 className="text-3xl font-medium pt-7">Welcome back!</h2>
         <h3 className="text-lg font-medium pt-4 ">Let's log in</h3>
 
-        <div className="rounded-t-[32px] bg-gray-200 h-full w-screen pt-12 mt-14 flex flex-col items-center">
+        <div className="rounded-t-[32px] h-full w-screen mt-14 pt-16 flex flex-col items-center glass-card bg-gray-600">
           <div className="flex flex-col items-center w-[315px]">
             <form
               className="h-[244px] w-full flex flex-col justify-between"
@@ -96,13 +97,15 @@ export default function Login() {
             </form>
 
             <div className="relative flex py-5 items-center w-full">
-              <div className="flex-grow border-t border-gray-900"></div>
-              <span className="flex-shrink mx-2 text-gray-700">or</span>
-              <div className="flex-grow border-t border-gray-900"></div>
+              <div className="flex-grow border-t border-gray-900 dark:border-gray-300"></div>
+              <span className="flex-shrink mx-2 text-gray-700 dark:text-gray-200">
+                or
+              </span>
+              <div className="flex-grow border-t border-gray-900 dark:border-gray-300"></div>
             </div>
 
             <button
-              className="border border-1 border-black rounded-md min-w-fit w-full h-[48px] px-4 font-medium text-lg"
+              className="btn-google"
               onClick={handleGoogleSignIn}
               disabled={isLoading}
             >

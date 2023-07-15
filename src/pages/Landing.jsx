@@ -4,11 +4,12 @@ import Button from "../components/Button";
 export default function Landing() {
   return (
     <>
-      <main className="flex flex-col items-center pt-24 h-screen">
+      <div className="background dark:background__dark"></div>
+      <main className="flex flex-col items-center pt-24 h-screen dark:text-gray-100">
         <h1 className="text-5xl font-bold font-display">beaulife.</h1>
         <h3 className="text-lg font-medium pt-4 ">Weather made simple</h3>
 
-        <div className="rounded-t-[32px] bg-gray-200 h-full w-screen mt-14 flex flex-col items-center">
+        <div className="rounded-t-[32px] h-full w-screen mt-14 flex flex-col items-center bg-gradient-to-b from-gray-600 to-gray-800 ">
           <div className="flex flex-col mt-36 w-[315px] min-h-[116px] justify-between items-center">
             <Link className="w-full" to="login">
               <Button primary type="button">
