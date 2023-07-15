@@ -46,7 +46,7 @@ export default function Search() {
   return (
     <div className="w-full rounded-xl relative">
       <form onSubmit={handleSubmit}>
-        <div className="relative text-gray-700 dark:text-gray-300 dark:focus-within:text-gray-200 focus-within:text-gray-800">
+        <div className="relative text-gray-700 dark:text-gray-300 dark:focus-within:text-gray-200 focus-within:text-gray-800 ">
           <span class="absolute inset-y-0 left-0 flex items-center pl-2 z-20">
             <svg
               fill="none"
@@ -61,7 +61,7 @@ export default function Search() {
             </svg>
           </span>
           <input
-            className="w-full shadow-sm shadow-slate-300 dark:shadow-none glass-card px-4 h-10 pl-10 pr-2 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-opacity-50"
+            className="w-full shadow-sm shadow-slate-300 dark:shadow-none glass-card px-4 h-10 pl-10 pr-2 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-opacity-50 cursor-text"
             type="search"
             name="q"
             placeholder="Search"

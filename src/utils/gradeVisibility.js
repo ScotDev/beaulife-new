@@ -1,5 +1,5 @@
 const gradeVisibility = (visibility) => {
-  // Assumes miles
+  // Assumes units are miles
   let grade;
 
   switch (visibility) {
