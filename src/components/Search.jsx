@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { searchLocation } from "../utils/searchLocation";
+import Loading from "./Loading";
 import { Link } from "react-router-dom";
 
 export default function Search() {
   const [searchTerm, setSearchTerm] = useState("");
   const [results, setResults] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(async () => {
@@ -24,16 +26,28 @@ export default function Search() {
       // console.log(res);
       setResults(res);
       console.log("Search term:", searchTerm);
+      setIsLoading(false);
     }, 1000);
     return () => clearTimeout(delayDebounceFn);
   }, [searchTerm]);
 
   const handleInputChange = (e) => {
+    setIsLoading(true);
     setSearchTerm(e.target.value);
+    if (!e.nativeEvent.data) {
+      setResults([]);
+      console.log("cleared");
+      setIsLoading(false);
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+  };
+
+  const handleReset = (e) => {
+    setResults([]);
+    console.log("reset");
   };
 
   const handleClick = (selectedResult) => {
@@ -47,15 +61,15 @@ export default function Search() {
     <div className="w-full rounded-xl relative">
       <form onSubmit={handleSubmit}>
         <div className="relative text-gray-700 dark:text-gray-300 dark:focus-within:text-gray-200 focus-within:text-gray-800 ">
-          <span class="absolute inset-y-0 left-0 flex items-center pl-2 z-20">
+          <span className="absolute inset-y-0 left-0 flex items-center pl-2 z-20">
             <svg
               fill="none"
               stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               viewBox="0 0 24 24"
-              class="w-6 h-6"
+              className="w-6 h-6"
             >
               <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
             </svg>
@@ -70,7 +84,13 @@ export default function Search() {
           />
         </div>
       </form>
+
       <ul className="z-20 absolute w-full rounded-md m-0 glass-card mt-2">
+        {isLoading && results.length < 1 && (
+          <div className="-mt-20 mb-4">
+            <Loading />
+          </div>
+        )}
         {results.length > 0 &&
           results.map((result) => {
             if (result.lat && result.lon && result.url) {
@@ -83,7 +103,7 @@ export default function Search() {
                 >
                   <li
                     key={result.id}
-                    className=" py-2 px-4 flex flex-col rounded-md gap-1 hover:bg-gray-50 cursor-pointer"
+                    className=" py-2 px-4 flex flex-col rounded-md gap-1 hover:bg-gray-50 dark:hover:bg-gray-500 cursor-pointer"
                   >
                     <h3 className="font-medium">{result.name}</h3>
                     <h5 className="text-sm">{result.region}</h5>
